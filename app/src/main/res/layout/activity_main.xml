@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hevttc.jdr.interiew.view.activity.MainActivity">
+    android:orientation="vertical">
     <com.hevttc.jdr.interiew.view.customview.NoScrollViewPager
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
@@ -12,5 +11,42 @@
         android:layout_weight="1">
 
     </com.hevttc.jdr.interiew.view.customview.NoScrollViewPager>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider"/>
+    <RadioGroup
+        android:layout_marginTop="5dp"
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
 
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_study"
+            style="@style/MainRadioButtonStyle"
+            android:drawableTop="@drawable/selector_tab_study"
+            android:text="学习"/>
+
+        <RadioButton
+            android:id="@+id/rb_find_home"
+            style="@style/MainRadioButtonStyle"
+            android:drawableTop="@drawable/selector_tab_home"
+            android:text="社区"/>
+
+        <RadioButton
+            android:id="@+id/rb_message"
+            style="@style/MainRadioButtonStyle"
+            android:drawableTop="@drawable/selector_tab_message"
+            android:text="消息"/>
+
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            style="@style/MainRadioButtonStyle"
+            android:drawableTop="@drawable/selector_tab_mine"
+            android:text="我的"/>
+
+    </RadioGroup>
 </LinearLayout>
