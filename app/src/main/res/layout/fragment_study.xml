@@ -173,6 +173,85 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:paddingTop="5dp"
+                        android:src="@mipmap/ic_study"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp" />
+                    <View
+                        android:background="@color/divider"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"/>
+                    <ImageView
+                        android:paddingTop="5dp"
+                        android:src="@mipmap/ic_wrong"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp" />
+                    <View
+                        android:background="@color/divider"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"/>
+                    <ImageView
+                        android:paddingTop="5dp"
+                        android:src="@mipmap/ic_test"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:paddingTop="5dp"
+                        android:textSize="13sp"
+                        android:gravity="center_horizontal"
+                        android:text="专项练习"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:background="@color/divider"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"/>
+                    <TextView
+                        android:paddingTop="5dp"
+                        android:textSize="13sp"
+                        android:gravity="center_horizontal"
+                        android:text="错题练习"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:background="@color/divider"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"/>
+                    <TextView
+                        android:paddingTop="5dp"
+                        android:textSize="13sp"
+                        android:text="开始测试"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

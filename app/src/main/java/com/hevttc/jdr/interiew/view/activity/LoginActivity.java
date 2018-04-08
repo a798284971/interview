@@ -124,6 +124,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         if(baseBean.isSuccess()){
                             SPUtils.saveString(mContext,Constants.SP_LOGIN,response.body());
                             Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
+                            toActivity(MainActivity.class);
                             finish();
                         }else{
                             Toast.makeText(mContext, baseBean.getMsg(), Toast.LENGTH_SHORT).show();
