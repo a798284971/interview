@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="@color/title_back"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize">
+        <Button
+            android:textColor="@color/white"
+            android:text="sssss"
+            android:drawablePadding="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/row_back"
+            android:id="@+id/bt_exer_title"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_exer_card"
+                android:src="@mipmap/ic_test_card"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ic_test_time"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:text="00:00:00"
+                android:id="@+id/tv_exer_time"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_exer_main"
+        android:layout_width="match_parent"
+        android:layout_height="0"
+        android:layout_weight="1"></android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textColor="@color/light_green"
+            android:background="@color/title_back"
+            android:gravity="center"
+            android:text="上一题"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <View
+            android:background="@color/white"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"></View>
+        <TextView
+            android:textColor="@color/light_green"
+            android:background="@color/title_back"
+            android:gravity="center"
+            android:text="下一题"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>
