@@ -1,5 +1,7 @@
 package com.hevttc.jdr.interiew.view.activity;
 
+import com.hevttc.jdr.interiew.R;
+
 /**
  * Created by hegeyang on 2018/4/9.
  */
@@ -7,7 +9,7 @@ package com.hevttc.jdr.interiew.view.activity;
 public class ExerciseTestActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.activity_exercise_test;
     }
 
     @Override

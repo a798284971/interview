@@ -87,7 +87,7 @@ public final class SPUtils {
         boolean b = sp.getBoolean(key, false);
         return b;
     }
-    public UserInfoBean getSignInfo(Context context){
+    public static UserInfoBean getSignInfo(Context context){
         String user = getString(context, Constants.SP_LOGIN, "");
         if (!user.equals("")) {
             Type type = new TypeToken<BaseBean<UserInfoBean>>() {

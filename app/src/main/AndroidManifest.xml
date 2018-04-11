@@ -21,6 +21,7 @@
         <activity android:name=".view.activity.LoginActivity"/>
         <activity android:name=".view.activity.RegisterActivity"/>
         <activity android:name=".view.activity.ExerciseTestActivity"/>
+        <activity android:name=".view.activity.ExerciseListActvity"/>
     </application>
 
 </manifest>
