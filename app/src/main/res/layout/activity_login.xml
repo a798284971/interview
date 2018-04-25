@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_while">
     <include layout="@layout/title_builder"/>
@@ -16,7 +18,7 @@
                 android:id="@+id/iv_login_icon"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
-                android:background="@mipmap/ic_launcher"
+                android:background="@mipmap/ic_logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
             <LinearLayout
@@ -28,20 +30,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/et_phone_number"
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/HintAppearance"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@null"
-                    android:gravity="center_vertical"
-                    android:hint="手机号"
-                    android:inputType="number"
-                    android:textColorHint="#c6c6cc"
-                    android:textSize="16sp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="手机号"
+                        android:inputType="number"
+                        android:textColorHint="#c6c6cc"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+
 
                 <View
                     android:layout_width="match_parent"
@@ -52,22 +60,28 @@
                     android:background="@color/title_back" />
 
 
-
-                <EditText
-                    android:id="@+id/et_code_pwd"
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/HintAppearance"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@null"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:hint="密码"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:inputType="textPassword"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColorHint="#c6c6cc"
-                    android:textSize="16sp" />
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/et_code_pwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:hint="密码"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:inputType="textPassword"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColorHint="#c6c6cc"
+                        android:textSize="16sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
 
                 <View
                     android:layout_width="match_parent"
@@ -85,7 +99,7 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/shape_sure"
                     android:gravity="center"
                     android:text="确认"
@@ -149,16 +163,16 @@
 
                     <ImageView
                         android:id="@+id/iv_wx_signin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_marginRight="40dp"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/ic_wechat" />
 
                     <ImageView
                         android:id="@+id/iv_qq_signin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/ic_qq" />
                 </LinearLayout>
             </LinearLayout>
 

@@ -113,7 +113,7 @@ public class StudyFragment extends BaseFragment implements View.OnClickListener 
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        Log.e("hgy", response.body());
+
                         Type type = new TypeToken<BaseBean<List<LunboBean>>>() {
                         }.getType();
                         BaseBean<List<LunboBean>> baseBean = new Gson().fromJson(response.body(), type);

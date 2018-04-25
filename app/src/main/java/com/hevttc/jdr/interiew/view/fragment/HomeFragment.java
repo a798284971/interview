@@ -2,6 +2,8 @@ package com.hevttc.jdr.interiew.view.fragment;
 
 import android.view.View;
 
+import com.hevttc.jdr.interiew.R;
+
 /**
  * Created by hegeyang on 2017/12/21.
  */
@@ -9,7 +11,7 @@ import android.view.View;
 public class HomeFragment extends BaseFragment {
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_study;
     }
 
     @Override

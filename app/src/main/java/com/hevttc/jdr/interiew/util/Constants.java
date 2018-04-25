@@ -6,7 +6,7 @@ package com.hevttc.jdr.interiew.util;
 
 public class Constants {
     /*API通用头*/
-    public static final String SERVER_HEAD = "http://10.154.110.152:8082/";
+    public static final String SERVER_HEAD = "http://192.168.0.103:8082/";
 
     /*App相关接口*/
     public static final String API_APP_HEAD = SERVER_HEAD+"app/";
@@ -26,10 +26,17 @@ public class Constants {
     public static final String API_LOGININ =API_USER_HEAD+"login";
     //用户状态
     public static final String API_SIGN_STATUS = API_USER_HEAD+"getSignStatus";
+    //获取用户测试状态
+    public static final String API_TEST_STATUS = API_USER_HEAD+"getTestStatus";
+
+
+
+
     /*题目相关*/
     public static final String API_EXECRISE_HEAD = SERVER_HEAD+"exercise/";
     //获取列表
-    public static final String API_EXECRISE_LIST = API_EXECRISE_HEAD+"getExerciseList";
+    public static final String API_EXECRISE_LIST = API_EXECRISE_HEAD+"getExerciseListByUid";
+
 
     //*用户常量*/
     public static final String SP_LOGIN = "login";

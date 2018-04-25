@@ -35,11 +35,6 @@
             android:drawableTop="@drawable/selector_tab_home"
             android:text="社区"/>
 
-        <RadioButton
-            android:id="@+id/rb_message"
-            style="@style/MainRadioButtonStyle"
-            android:drawableTop="@drawable/selector_tab_message"
-            android:text="消息"/>
 
 
         <RadioButton

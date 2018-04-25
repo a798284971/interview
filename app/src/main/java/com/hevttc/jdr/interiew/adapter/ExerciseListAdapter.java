@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,7 @@ public class ExerciseListAdapter extends SecondaryListAdapter<ExerciseListAdapte
     @Override
     public RecyclerView.ViewHolder subItemViewHolder(ViewGroup parent) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.exerciselist_recy_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.exerciselist_recy_subitem_layout, parent, false);
 
         return new SubItemViewHolder(v);
     }
@@ -64,8 +65,17 @@ public class ExerciseListAdapter extends SecondaryListAdapter<ExerciseListAdapte
     @Override
     public void onSubItemBindViewHolder(RecyclerView.ViewHolder holder, int groupItemIndex, int subItemIndex) {
         ExerciesListBean.DataListBean dataListBean = dts.get(groupItemIndex).getSubItems().get(subItemIndex);
-        ((SubItemViewHolder) holder).tvSub.setText(dataListBean.getTitle());
-
+        //((SubItemViewHolder) holder).tvSub.setText(dataListBean.getTitle());
+        SubItemViewHolder holder1 = (SubItemViewHolder) holder;
+        holder1.tv_exe_subitem_title.setText(dataListBean.getTitle());
+        holder1.tv_exe_subitem_quesnum.setText(dataListBean.getQuestionNum()+"");
+        holder1.tv_exe_subitem_studynum.setText(dataListBean.getIsStudyNum()+"");
+        if (new Double(dataListBean.getRightRate()).intValue()==0){
+            holder1.ll_right_rate.setVisibility(View.INVISIBLE);
+        }else{
+            holder1.ll_right_rate.setVisibility(View.VISIBLE);
+            holder1.tv_exe_subitem_rightRate.setText(dataListBean.getRightRate()+"");
+        }
     }
 
     @Override
@@ -97,12 +107,21 @@ public class ExerciseListAdapter extends SecondaryListAdapter<ExerciseListAdapte
 
     public static class SubItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvSub;
+
+        TextView tv_exe_subitem_title;
+        TextView tv_exe_subitem_studynum;
+        TextView tv_exe_subitem_quesnum;
+        TextView tv_exe_subitem_rightRate;
+        LinearLayout ll_right_rate;
 
         public SubItemViewHolder(View itemView) {
             super(itemView);
 
-            tvSub = itemView.findViewById(R.id.tv_group_item);
+            tv_exe_subitem_title = itemView.findViewById(R.id.tv_exe_subitem_title);
+            tv_exe_subitem_quesnum = itemView.findViewById(R.id.tv_exe_subitem_quesnum);
+            tv_exe_subitem_studynum = itemView.findViewById(R.id.tv_exe_subitem_studynum);
+            ll_right_rate = itemView.findViewById(R.id.ll_right_rate);
+            tv_exe_subitem_rightRate = itemView.findViewById(R.id.tv_exe_subitem_rightRate);
         }
     }
 

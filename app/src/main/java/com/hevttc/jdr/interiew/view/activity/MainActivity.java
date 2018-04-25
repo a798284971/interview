@@ -3,6 +3,7 @@ package com.hevttc.jdr.interiew.view.activity;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
@@ -32,8 +33,6 @@ public class MainActivity extends BaseActivity {
     RadioButton rbStudy;
     @BindView(R.id.rb_find_home)
     RadioButton rbFindHome;
-    @BindView(R.id.rb_message)
-    RadioButton rbMessage;
     @BindView(R.id.rb_mine)
     RadioButton rbMine;
     @BindView(R.id.rg_main)
@@ -48,7 +47,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews() {
         vpMain = findViewById(R.id.vp_main);
-        RadioButton[] rb = {rbStudy,rbFindHome,rbMessage,rbMine};
+        RadioButton[] rb = {rbStudy,rbFindHome,rbMine};
         for (int i = 0; i < rb.length; i++) {
             //挨着给每个RadioButton加入drawable限制边距以控制显示大小
             Drawable[] drawables = rb[i].getCompoundDrawables();
@@ -69,9 +68,8 @@ public class MainActivity extends BaseActivity {
     private void initViewPagers() {
         final List<Fragment> fragments = new ArrayList<>();
         fragments.add(new StudyFragment());
-        /*fragments.add(new HomeFragment());
-        fragments.add(new MessageFragment());
-        fragments.add(new MineFragment());*/
+        fragments.add(new HomeFragment());
+        fragments.add(new MineFragment());
         MainViewPagerAdapter adapter = new MainViewPagerAdapter(getSupportFragmentManager(), fragments);
         vpMain.setAdapter(adapter);
 
@@ -82,6 +80,26 @@ public class MainActivity extends BaseActivity {
 
         /*默认选中第一个选项卡*/
         rgMain.check(R.id.rb_study);
+    }
+
+    @Override
+    protected void initListeners() {
+        rgMain.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId){
+                    case R.id.rb_study:
+                        vpMain.setCurrentItem(0,false);
+                        break;
+                    case R.id.rb_find_home:
+                        vpMain.setCurrentItem(1,false);
+                        break;
+                    case R.id.rb_mine:
+                        vpMain.setCurrentItem(2,false);
+                        break;
+                }
+            }
+        });
     }
 
     //切换导航栏

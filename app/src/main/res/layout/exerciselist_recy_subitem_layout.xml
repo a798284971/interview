@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <View
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/title_back"
+                android:layout_width="3dp"
+                android:layout_height="10dp"/>
+            <View
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="6.5dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/shape_oval"/>
+            <View
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/title_back"
+                android:layout_width="3dp"
+                android:layout_height="15dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_exe_subitem_title"
+                    android:text="hahaha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/light_green"
+                    android:layout_marginRight="20dp"
+                    android:text="练习"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textSize="12sp"
+                    android:text="共"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="12sp"
+                    android:id="@+id/tv_exe_subitem_quesnum"
+                    android:text="100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="12sp"
+                    android:text="题"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/divider"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12sp"
+                    android:text="已练习"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="12sp"
+                    android:id="@+id/tv_exe_subitem_studynum"
+                    android:text="x"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="12sp"
+                    android:text="道"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:id="@+id/ll_right_rate"
+                    android:gravity="bottom"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <View
+                        android:background="@color/divider"
+                        android:layout_width="1dp"
+                        android:layout_height="15dp"/>
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:textSize="12sp"
+                        android:text="正确率"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="12sp"
+                        android:id="@+id/tv_exe_subitem_rightRate"
+                        android:text="x"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="%"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

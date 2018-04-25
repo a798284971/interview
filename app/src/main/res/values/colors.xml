@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#6e7ed4</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#044b51</color>
 
@@ -15,5 +15,7 @@
     <color name="text_color">#191919</color>
 
     <color name ="title_back">#044b51</color>
-    <color name = "light_green">#0eea45</color>
+    <color name = "light_green">#068f29</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

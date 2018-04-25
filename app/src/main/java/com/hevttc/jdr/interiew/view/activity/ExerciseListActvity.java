@@ -18,6 +18,7 @@ import com.hevttc.jdr.interiew.adapter.SecondaryListAdapter;
 import com.hevttc.jdr.interiew.bean.BaseBean;
 import com.hevttc.jdr.interiew.bean.ExerciesListBean;
 import com.hevttc.jdr.interiew.bean.SignStatusBean;
+import com.hevttc.jdr.interiew.bean.TestStatusBean;
 import com.hevttc.jdr.interiew.util.Constants;
 import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
@@ -76,11 +77,32 @@ public class ExerciseListActvity extends BaseActivity {
     @Override
     protected void initDatas() {
         getDataFromNet();
+        initTestStatus();
+    }
+
+    private void initTestStatus() {
+        OkGo.<String>get(Constants.API_TEST_STATUS)
+                .params("uid",SPUtils.getSignInfo(mContext).getId())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Type type = new TypeToken<BaseBean<TestStatusBean>>() {
+                        }.getType();
+                        BaseBean<TestStatusBean> baseBean = new Gson().fromJson(response.body(), type);
+                        if (baseBean.isSuccess()) {
+                            TestStatusBean data = baseBean.getData();
+                            tvExeliStudyNum.setText(data.getTestDay()+"");
+                            tvExeliQuesNum.setText(data.getTestNum()+"");
+                            tvExeliRate.setText(data.getTestRate()+"");
+                        }
+                    }
+                });
     }
 
 
     private void getDataFromNet() {
         OkGo.<String>get(Constants.API_EXECRISE_LIST)
+                .params("uid",SPUtils.getSignInfo(mContext).getId())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

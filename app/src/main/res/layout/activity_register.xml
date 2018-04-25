@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/title_builder"/>
     <ScrollView
@@ -15,20 +17,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/et_phone_number"
+                <android.support.design.widget.TextInputLayout
+                    app:hintTextAppearance="@style/HintAppearance"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@null"
-                    android:gravity="center_vertical"
-                    android:hint="手机号"
-                    android:inputType="number"
-                    android:textColorHint="#c6c6cc"
-                    android:textSize="16sp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="手机号"
+                        android:inputType="number"
+                        android:textColorHint="#c6c6cc"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+
 
                 <View
                     android:layout_width="match_parent"
@@ -42,20 +50,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-
-                    <EditText
-                        android:id="@+id/et_password"
+                    <android.support.design.widget.TextInputLayout
+                        app:hintTextAppearance="@style/HintAppearance"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:background="@null"
-                        android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:hint="密码"
-                        android:paddingRight="5dp"
-                        android:inputType="textPassword"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColorHint="#c6c6cc"
-                        android:textSize="16sp" />
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/et_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@null"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:hint="密码"
+                            android:paddingRight="5dp"
+                            android:inputType="textPassword"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColorHint="#c6c6cc"
+                            android:textSize="16sp" />
+
+                    </android.support.design.widget.TextInputLayout>
+
                     <CheckBox
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
@@ -78,20 +92,27 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-
-                    <EditText
-                        android:id="@+id/et_code"
+                    <android.support.design.widget.TextInputLayout
+                        app:hintTextAppearance="@style/HintAppearance"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:background="@null"
-                        android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:hint="验证码"
-                        android:paddingRight="5dp"
-                        android:inputType="number"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColorHint="#c6c6cc"
-                        android:textSize="16sp" />
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/et_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@null"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:hint="验证码"
+                            android:paddingRight="5dp"
+                            android:inputType="number"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColorHint="#c6c6cc"
+                            android:textSize="16sp" />
+
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <View
                         android:layout_width="1dp"

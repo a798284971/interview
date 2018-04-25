@@ -2,6 +2,7 @@ package com.hevttc.jdr.interiew.view.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -112,6 +113,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             Toast.makeText(mContext, "账号和密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
+        showDialog(R.id.tv_signin_is);
         OkGo.<String>get(Constants.API_LOGININ)
                 .params("username",mPhone)
                 .params("password",mPwd)
@@ -120,6 +122,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     public void onSuccess(Response<String> response) {
                         Type type = new TypeToken<BaseBean<UserInfoBean>>() {
                         }.getType();
+                        //Log.e("hgy", response.body().toString() );
                         BaseBean<UserInfoBean> baseBean = new Gson().fromJson(response.body(), type);
                         if(baseBean.isSuccess()){
                             SPUtils.saveString(mContext,Constants.SP_LOGIN,response.body());

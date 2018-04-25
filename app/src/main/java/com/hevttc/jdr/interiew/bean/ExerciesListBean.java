@@ -58,7 +58,7 @@ public class ExerciesListBean {
         private int superioe;
         private int questionNum;
         private int isStudyNum;
-        private int rightRate;
+        private double rightRate;
 
         public int getId() {
             return id;
@@ -100,11 +100,11 @@ public class ExerciesListBean {
             this.isStudyNum = isStudyNum;
         }
 
-        public int getRightRate() {
+        public double getRightRate() {
             return rightRate;
         }
 
-        public void setRightRate(int rightRate) {
+        public void setRightRate(double rightRate) {
             this.rightRate = rightRate;
         }
     }
