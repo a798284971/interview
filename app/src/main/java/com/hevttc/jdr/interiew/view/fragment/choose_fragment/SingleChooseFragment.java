@@ -2,6 +2,7 @@ package com.hevttc.jdr.interiew.view.fragment.choose_fragment;
 
 import android.view.View;
 
+import com.hevttc.jdr.interiew.R;
 import com.hevttc.jdr.interiew.view.fragment.BaseFragment;
 
 /**
@@ -11,7 +12,7 @@ import com.hevttc.jdr.interiew.view.fragment.BaseFragment;
 public class SingleChooseFragment extends BaseFragment {
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_single_choose;
     }
 
     @Override

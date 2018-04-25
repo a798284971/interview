@@ -52,11 +52,21 @@ public class MineFragment extends BaseFragment {
     AppBarLayout appbar;
     Unbinder unbinder;
     @BindView(R.id.tv_education)
-    TextView tvEducation;
-    @BindView(R.id.textView)
     TextView textView;
     @BindView(R.id.ll_change_info)
     LinearLayout llChangeInfo;
+    @BindView(R.id.rl_browse_wrong)
+    RelativeLayout rlBrowseWrong;
+    @BindView(R.id.rl_practice_wrong)
+    RelativeLayout rlPracticeWrong;
+    @BindView(R.id.rl_collect)
+    RelativeLayout rlCollect;
+    @BindView(R.id.rl_my_sign)
+    RelativeLayout rlMySign;
+    @BindView(R.id.rl_my_publish)
+    RelativeLayout rlMyPublish;
+    @BindView(R.id.rl_setting)
+    RelativeLayout rlSetting;
     private int mOffset = 0;
     boolean isblack = false;//状态栏字体是否是黑色
     boolean iswhite = true;//状态栏字体是否是亮色

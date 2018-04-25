@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="(单选题)"
+            android:text="(多选题)"
             android:textColor="@color/light_green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -59,7 +59,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <RadioGroup
+    <LinearLayout
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingLeft="15dp"
@@ -68,7 +68,7 @@
         android:layout_height="match_parent">
 
 
-        <RadioButton
+        <CheckBox
             android:drawablePadding="5dp"
             android:text="a"
             android:layout_marginTop="10dp"
@@ -76,7 +76,7 @@
             android:drawableLeft="@drawable/choose_a_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <RadioButton
+        <CheckBox
             android:text="b"
             android:drawablePadding="5dp"
             android:layout_marginTop="10dp"
@@ -84,7 +84,7 @@
             android:drawableLeft="@drawable/choose_b_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <RadioButton
+        <CheckBox
             android:layout_marginTop="10dp"
             android:drawablePadding="5dp"
             android:button="@null"
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,6 +100,6 @@
             android:button="@null"
             android:drawableLeft="@drawable/choose_c_selector"
             android:drawablePadding="5dp" />
-    </RadioGroup>
+    </LinearLayout>
 
 </LinearLayout>
