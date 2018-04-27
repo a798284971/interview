@@ -5,6 +5,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hevttc.jdr.interiew.R;
+import com.hevttc.jdr.interiew.bean.UserInfoBean;
 import com.hevttc.jdr.interiew.util.CircleTransform;
 import com.hevttc.jdr.interiew.util.DensityUtil;
+import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
+import com.hevttc.jdr.interiew.view.activity.ChangeInfoActivity;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,7 +58,7 @@ public class MineFragment extends BaseFragment {
     AppBarLayout appbar;
     Unbinder unbinder;
     @BindView(R.id.tv_education)
-    TextView textView;
+    TextView tvEducation;
     @BindView(R.id.ll_change_info)
     LinearLayout llChangeInfo;
     @BindView(R.id.rl_browse_wrong)
@@ -78,6 +84,31 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initDatas() {
+        UserInfoBean signInfo = SPUtils.getSignInfo(mActivity);
+        if(!TextUtils.isEmpty(signInfo.getNickname()))
+            nickname.setText(signInfo.getNickname());
+        else
+            nickname.setText("请设置昵称");
+        if (!TextUtils.isEmpty(signInfo.getEducation()))
+            tvEducation.setText(signInfo.getEducation());
+        else
+            tvEducation.setText("暂未设置学校");
+        if (!TextUtils.isEmpty(signInfo.getAvastar())){
+            Picasso.with(mActivity).load(signInfo.getAvastar())
+                    .transform(new CircleTransform())
+                    .into(ivHead);
+            Picasso.with(mActivity).load(signInfo.getAvastar())
+                    .transform(new CircleTransform())
+                    .into(toolbarAvatar);
+        }else {
+            Picasso.with(mActivity).load(R.mipmap.ic_head_default)
+                    .transform(new CircleTransform())
+                    .into(ivHead);
+            Picasso.with(mActivity).load(R.mipmap.ic_head_default)
+                    .transform(new CircleTransform())
+                    .into(toolbarAvatar);
+        }
+
 
     }
 
@@ -113,16 +144,17 @@ public class MineFragment extends BaseFragment {
                 }
             }
         });
+        rlAllinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toActivity(ChangeInfoActivity.class);
+            }
+        });
     }
 
     @Override
     public void initViews(View view) {
-        Picasso.with(mActivity).load(R.mipmap.ic_default)
-                .transform(new CircleTransform())
-                .into(ivHead);
-        Picasso.with(mActivity).load(R.mipmap.ic_default)
-                .transform(new CircleTransform())
-                .into(toolbarAvatar);
+
         StatusBarUtil.setViewTopPadding(mActivity, view, R.id.toolbar);
     }
 

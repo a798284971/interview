@@ -18,4 +18,11 @@
     <color name = "light_green">#068f29</color>
 
     <color name="transparent">#00000000</color>
+
+    <!--仿ios对话框-->
+    <color name="trans">#00000000</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
 </resources>

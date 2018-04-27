@@ -189,7 +189,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@mipmap/icon_wrong_test" />
+                            android:background="@mipmap/ic_wrong_prac" />
 
                         <TextView
                             android:layout_gravity="center"
@@ -223,7 +223,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@mipmap/icon_wrong_test" />
+                            android:background="@mipmap/ic_my_collect" />
 
                         <TextView
                             android:layout_gravity="center"
@@ -257,7 +257,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@mipmap/icon_wrong_test" />
+                            android:background="@mipmap/ic_my_sign" />
 
                         <TextView
                             android:layout_gravity="center"
@@ -291,7 +291,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@mipmap/icon_wrong_test" />
+                            android:background="@mipmap/ic_my_publish" />
 
                         <TextView
                             android:layout_gravity="center"
@@ -330,13 +330,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="设置" />
+                        <View
+                            android:background="@color/divider"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"/>
                     </LinearLayout>
 
                 </RelativeLayout>
-                <View
-                    android:background="@color/divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"/>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>

@@ -68,25 +68,6 @@ public final class SPUtils {
         SharedPreferences sp = context.getSharedPreferences(name, mode);
         return sp.getString(key, defValue);
     }
-
-
-    private static final String SPNAME = "ruiyihong";
-    private static SharedPreferences sp;
-
-    public static void putBoolean(String key, boolean value, Context context) {
-        if (sp == null) {
-            sp = context.getSharedPreferences(SPNAME, Context.MODE_PRIVATE);
-        }
-        sp.edit().putBoolean(key, value).commit();
-    }
-
-    public static boolean getBoolean(String key, Context context) {
-        if (sp == null) {
-            sp = context.getSharedPreferences(SPNAME, Context.MODE_PRIVATE);
-        }
-        boolean b = sp.getBoolean(key, false);
-        return b;
-    }
     public static UserInfoBean getSignInfo(Context context){
         String user = getString(context, Constants.SP_LOGIN, "");
         if (!user.equals("")) {

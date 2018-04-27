@@ -6,7 +6,7 @@ package com.hevttc.jdr.interiew.util;
 
 public class Constants {
     /*API通用头*/
-    public static final String SERVER_HEAD = "http://192.168.0.103:8082/";
+    public static final String SERVER_HEAD = "http://10.154.106.7:8082/";
 
     /*App相关接口*/
     public static final String API_APP_HEAD = SERVER_HEAD+"app/";

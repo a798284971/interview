@@ -14,8 +14,7 @@ import java.util.List;
 
 
 
-abstract public class BaseRecycleViewAdapter<T> extends
-        RecyclerView.Adapter<BaseRecycleViewAdapter.MyViewHolder> {
+abstract public class BaseRecycleViewAdapter<T> extends  RecyclerView.Adapter<BaseRecycleViewAdapter.MyViewHolder> {
 
     protected Context mContext;
     protected List<T> mDatas;
@@ -40,9 +39,14 @@ abstract public class BaseRecycleViewAdapter<T> extends
         return holder;
     }
 
-    @Override
+
     public void onBindViewHolder(MyViewHolder holder, int position) {
         convert(holder, position, mDatas.get(position));
+    }
+
+
+    public void onBindViewHolder(MyViewHolder holder, int position, List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
     }
 
     @Override
