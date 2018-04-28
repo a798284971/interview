@@ -4,35 +4,65 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.ListPopupWindow;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.sdk.android.oss.ClientException;
+import com.alibaba.sdk.android.oss.ServiceException;
+import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
+import com.alibaba.sdk.android.oss.model.PutObjectRequest;
+import com.alibaba.sdk.android.oss.model.PutObjectResult;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hevttc.jdr.interiew.R;
+import com.hevttc.jdr.interiew.adapter.UnivisityAdapter;
+import com.hevttc.jdr.interiew.bean.BaseBean;
+import com.hevttc.jdr.interiew.bean.UnivisityBean;
 import com.hevttc.jdr.interiew.bean.UserInfoBean;
 import com.hevttc.jdr.interiew.util.CircleTransform;
+import com.hevttc.jdr.interiew.util.Constants;
+import com.hevttc.jdr.interiew.util.OssUtils;
 import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
 import com.hevttc.jdr.interiew.util.TitleBuilder;
 import com.hevttc.jdr.interiew.view.customview.ActionSheetDialog;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,6 +113,45 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
     private static String[] PERMISSIONS_CEMERA = {Manifest.permission.CAMERA,
             Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_EXTERNAL_STORAGE};
     private String mCameraFilePath;
+    private static final String IMAGE_FILE_NAME = "temp_head_image.png";
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 0:
+                    String headUrl = Constants.SERVER_PHOTO_HEAD + "headimg/" + cropfile.getName();
+                    update("avastar",headUrl);
+                    break;
+                case 1:
+                    Toast.makeText(mContext, "上传失败，请稍后重试", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
+    private android.app.AlertDialog dialog;
+    private String bDate;
+    private ListPopupWindow listPopupWindow;
+    private ArrayAdapter<String> mAdapter;
+
+    private void update(String key, String headUrl) {
+        UserInfoBean signInfo = SPUtils.getSignInfo(mContext);
+        OkGo.<String>get(Constants.API_CHANGE_INFO)
+                .params("uid",signInfo.getId())
+                .params(key,headUrl)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Type type = new TypeToken<BaseBean<UserInfoBean>>() {
+                        }.getType();
+                        BaseBean<UserInfoBean> baseBean = new Gson().fromJson(response.body(), type);
+                        if (baseBean.isSuccess()){
+                            SPUtils.saveString(mContext,Constants.SP_LOGIN,response.body());
+                        }
+                    }
+                });
+
+    }
 
     @Override
     protected int getLayoutId() {
@@ -152,10 +221,31 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_change_birth:
-
+                setBirtyday();
+                if (dialog != null) {
+                    dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            try {
+                                Date parse = dateFormat.parse(bDate);
+                                Date date = new Date();
+                                int temp = parse.compareTo(date);
+                                if (temp == 1) {
+                                    Toast.makeText(mContext, "出生年月不能大于今天", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    tvChangeBirth.setText(bDate);
+                                    update("birth",bDate);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
                 break;
             case R.id.rl_change_education:
-
+                change_education();
                 break;
             case R.id.rl_change_head:
                 new ActionSheetDialog(this)
@@ -182,11 +272,13 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
                                 } else {
                                     showCamera();
                                 }
+
                             }
-                        }).show();
+                        })
+                        .show();
                 break;
             case R.id.rl_change_nick:
-
+                change_nick();
                 break;
             case R.id.rl_change_sex:
                 change_sex();
@@ -194,21 +286,136 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
         }
     }
 
+    private void change_education() {
+        //final EditText et = new EditText(mContext);
+        View inflate = View.inflate(mContext, R.layout.dialog_change_education, null);
+        final EditText et_education = inflate.findViewById(R.id.et_education);
+        final RecyclerView rcy_education = inflate.findViewById(R.id.rcy_education);
+        rcy_education.setLayoutManager(new LinearLayoutManager(mContext));
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("毕业院校")
+                .setView(inflate);
+       builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String input = et_education.getText().toString();
+                if (input.equals("")) {
+                    Toast.makeText(getApplicationContext(), "院校不能为空" + input, Toast.LENGTH_LONG).show();
+                }
+                else {
+                    tvChangeEducation.setText(input);
+                    update("education",input);
+                }
+            }
+
+        })
+                .setNegativeButton("取消", null)
+                .show();
+
+        et_education.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(!TextUtils.isEmpty(et_education.getText().toString())){
+                            String trim = et_education.getText().toString().trim();
+                            OkGo.<String>get(Constants.API_GET_UNIVISITY)
+                                    .params("name",trim)
+                                    .execute(new StringCallback() {
+                                        @Override
+                                        public void onSuccess(Response<String> response) {
+                                            Type type = new TypeToken<ArrayList<UnivisityBean>>() {
+                                            }.getType();
+                                            final ArrayList<UnivisityBean> dataList = new Gson().fromJson(response.body(), type);
+                                            if (dataList.size()!=0) {
+                                                UnivisityAdapter univisityAdapter = new UnivisityAdapter(R.layout.item_univisity_dialog, dataList);
+                                                rcy_education.setVisibility(View.VISIBLE);
+                                                rcy_education.setAdapter(univisityAdapter);
+                                                univisityAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                                                    @Override
+                                                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                                        et_education.setText(dataList.get(position).getName());
+                                                        rcy_education.setVisibility(View.GONE);
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    });
+                        }else{
+                            rcy_education.setVisibility(View.GONE);
+                        }
+                    }
+                });
+    }
+
+
+
+
+
+    private void change_nick() {
+        final EditText et = new EditText(mContext);
+
+        new AlertDialog.Builder(this).setTitle("昵称")
+                .setView(et)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String input = et.getText().toString();
+                        if (input.equals("")) {
+                            Toast.makeText(getApplicationContext(), "昵称不能为空" + input, Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            tvChangeNick.setText(input);
+                            update("nickName",input);
+                        }
+                    }
+
+                })
+                .setNegativeButton("取消", null)
+                .show();
+    }
+
+    private void setBirtyday() {
+        View v = LayoutInflater.from(this).inflate(R.layout.time_picker, null);
+        dialog = new android.app.AlertDialog.
+                Builder(this).create();
+
+
+        final DatePicker datePicker = v.findViewById(R.id.datePicker);
+        TextView tv_picker_finish = v.findViewById(R.id.tv_picker_finish);
+
+        //win.addContentView(v,lp);
+        tv_picker_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int year = datePicker.getYear();
+                int month = datePicker.getMonth();
+                int day = datePicker.getDayOfMonth();
+                bDate = year + "-" + (month >= 9 ? month + 1 : "0" + (month + 1)) + "-" + (day > 9 ? day : "0" + day);
+                dialog.dismiss();
+            }
+        });
+        dialog.setView(v);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
     private void change_sex() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext); //定义一个AlertDialog
-        String[] strarr = {"男","女"};
+        final String[] strarr = {"男","女"};
         builder.setItems(strarr, new DialogInterface.OnClickListener()
         {
             public void onClick(DialogInterface arg0, int arg1)
             {
-                String sex = "2";
-                // 自动生成的方法存根
-                if (arg1 == 0) {//男
-                    sex = "1";
-                }else {//女
-                    sex = "2";
-                }
-
+                update("sex",strarr[arg1]);
+                tvChangeSex.setText(strarr[arg1]);
             }
         });
         builder.show();
@@ -223,9 +430,17 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
             if (!file.exists()) {
                 file.mkdirs();
             }
-            mCameraFilePath = path + "/" + System.currentTimeMillis() + ".jpg";
-            intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT, Uri
-                    .fromFile(new File(mCameraFilePath)));
+            /*mCameraFilePath = path + "/" + System.currentTimeMillis() + ".jpg";
+
+            intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT,Uri.parse(mCameraFilePath));*/
+            File cameraDataDir = new File(path);
+            if (!cameraDataDir.exists()){
+                cameraDataDir.mkdirs();
+            }
+            mCameraFilePath = cameraDataDir.getAbsolutePath() + File.separator
+                    + System.currentTimeMillis() + ".jpg";
+            intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT,
+                    Uri.fromFile(new File(mCameraFilePath)));
             startActivityForResult(intentFromCapture, CODE_CAMERA_REQUEST);
         }
     }
@@ -273,7 +488,7 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
                     if (!file.exists()) {
                         file.mkdirs();
                     }
-                    
+
                     cropRawPhoto(Uri.fromFile(new File(mCameraFilePath)));
 
                 } else {
@@ -283,12 +498,41 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
                 break;
 
             case CODE_RESULT_REQUEST:
-                //Bitmap bitmap = BitmapFactory.decodeFile(cropfile.getPath());
-                //ivChangeHead.setImageBitmap(bitmap);
+                /*Bitmap bitmap = BitmapFactory.decodeFile(cropfile.getPath());
+                ivChangeHead.setImageBitmap(bitmap);*/
                 Picasso.with(mContext).load(Uri.fromFile(cropfile))
                         .transform(new CircleTransform())
                         .into(ivChangeHead);
                 //submitHeadIcon();
+                OssUtils.initOss(mContext).asyncPutObject(OssUtils.putImage(cropfile, "headimg/"), new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
+                    @Override
+                    public void onSuccess(PutObjectRequest putObjectRequest, PutObjectResult putObjectResult) {
+                       Message obtain = Message.obtain();
+                        obtain.obj = putObjectResult;
+                        obtain.what = 0;
+                        handler.sendMessage(obtain);
+                    }
+
+                    @Override
+                    public void onFailure(PutObjectRequest putObjectRequest, ClientException clientExcepion, ServiceException serviceException) {
+
+                        // 请求异常
+                        if (clientExcepion != null) {
+                            // 本地异常如网络异常等
+                            handler.sendEmptyMessage(1);
+                            clientExcepion.printStackTrace();
+                        }
+                        if (serviceException != null) {
+                            // 服务异常
+                            handler.sendEmptyMessage(1);
+                            Log.e("ErrorCode", serviceException.getErrorCode());
+                            Log.e("RequestId", serviceException.getRequestId());
+                            Log.e("HostId", serviceException.getHostId());
+                            Log.e("RawMessage", serviceException.getRawMessage());
+                        }
+                    }
+                });
+
                 break;
         }
 

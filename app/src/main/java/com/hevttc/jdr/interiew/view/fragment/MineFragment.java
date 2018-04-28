@@ -20,7 +20,9 @@ import com.hevttc.jdr.interiew.util.CircleTransform;
 import com.hevttc.jdr.interiew.util.DensityUtil;
 import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
+import com.hevttc.jdr.interiew.view.activity.AboutWrongActivity;
 import com.hevttc.jdr.interiew.view.activity.ChangeInfoActivity;
+import com.hevttc.jdr.interiew.view.activity.CollectActivity;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -33,7 +35,7 @@ import butterknife.Unbinder;
  * Created by hegeyang on 2017/12/21.
  */
 
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.iv_head)
     ImageView ivHead;
     @BindView(R.id.nickname)
@@ -84,11 +86,21 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initDatas() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         UserInfoBean signInfo = SPUtils.getSignInfo(mActivity);
-        if(!TextUtils.isEmpty(signInfo.getNickname()))
+        if(!TextUtils.isEmpty(signInfo.getNickname())) {
             nickname.setText(signInfo.getNickname());
-        else
+            tvTitle.setText(signInfo.getNickname());
+        }
+        else {
             nickname.setText("请设置昵称");
+            tvTitle.setText("我的");
+        }
         if (!TextUtils.isEmpty(signInfo.getEducation()))
             tvEducation.setText(signInfo.getEducation());
         else
@@ -108,13 +120,13 @@ public class MineFragment extends BaseFragment {
                     .transform(new CircleTransform())
                     .into(toolbarAvatar);
         }
-
-
     }
 
     @Override
     protected void initListeners() {
-
+        rlBrowseWrong.setOnClickListener(this);
+        rlPracticeWrong.setOnClickListener(this);
+        rlCollect.setOnClickListener(this);
 
         appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
 
@@ -170,5 +182,23 @@ public class MineFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onClick(View v) {
+        Bundle bundle = new Bundle();
+        switch (v.getId()){
+            case R.id.rl_browse_wrong:
+                bundle.putInt("type",0);
+                toActivity(AboutWrongActivity.class,bundle);
+                break;
+            case R.id.rl_practice_wrong:
+                bundle.putInt("type",1);
+                toActivity(AboutWrongActivity.class,bundle);
+                break;
+            case R.id.rl_collect:
+                toActivity(CollectActivity.class);
+                break;
+        }
     }
 }

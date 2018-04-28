@@ -26,6 +26,8 @@
         <activity android:name=".view.activity.ExerciseTestActivity"/>
         <activity android:name=".view.activity.ExerciseListActvity"/>
         <activity android:name=".view.activity.ChangeInfoActivity"/>
+        <activity android:name=".view.activity.AboutWrongActivity"/>
+        <activity android:name=".view.activity.CollectActivity"/>
     </application>
 
 </manifest>
