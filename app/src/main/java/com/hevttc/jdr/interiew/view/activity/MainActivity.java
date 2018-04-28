@@ -11,15 +11,26 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hevttc.jdr.interiew.R;
 import com.hevttc.jdr.interiew.adapter.MainViewPagerAdapter;
+import com.hevttc.jdr.interiew.bean.BaseBean;
+import com.hevttc.jdr.interiew.bean.OssMsgBean;
+import com.hevttc.jdr.interiew.bean.UserInfoBean;
+import com.hevttc.jdr.interiew.util.Constants;
 import com.hevttc.jdr.interiew.util.DensityUtil;
+import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.view.customview.NoScrollViewPager;
 import com.hevttc.jdr.interiew.view.fragment.HomeFragment;
 import com.hevttc.jdr.interiew.view.fragment.MessageFragment;
 import com.hevttc.jdr.interiew.view.fragment.MineFragment;
 import com.hevttc.jdr.interiew.view.fragment.StudyFragment;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +74,26 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initDatas() {
         initViewPagers();
+        getOssData();
+    }
+
+    private void getOssData() {
+        UserInfoBean signInfo = SPUtils.getSignInfo(mContext);
+        OkGo.<String>get(Constants.API_GET_OSS)
+                .params("uid",signInfo.getId())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Type type = new TypeToken<BaseBean<OssMsgBean>>() {
+                        }.getType();
+                        BaseBean<OssMsgBean> baseBean = new Gson().fromJson(response.body(), type);
+                        if (baseBean.isSuccess()){
+                            SPUtils.saveString(mContext,Constants.SP_ACCESS_ID,baseBean.getData().getId());
+                            SPUtils.saveString(mContext,Constants.SP_ACCESS_PAS,baseBean.getData().getPwd());
+                        }
+
+                    }
+                });
     }
 
     private void initViewPagers() {

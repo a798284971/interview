@@ -30,8 +30,8 @@ public class Constants {
     public static final String API_TEST_STATUS = API_USER_HEAD+"getTestStatus";
     //修改用户信息接口
     public static final String API_CHANGE_INFO = API_USER_HEAD+"changeInfo";
-
-
+    //获取oss信息
+    public static final String API_GET_OSS = API_USER_HEAD+"getOssID";
 
 
     /*题目相关*/
@@ -55,8 +55,8 @@ public class Constants {
 
 
     /*常量*/
-    public static final String ACCESS_ID = "LTAIrQdpsIaRNbg4";
-    public static final String ACCESS_PAS ="UUTn5SuVpNl52vtGNRH049R7wipMuR";
+    public static final String SP_ACCESS_ID = "access";
+    public static final String SP_ACCESS_PAS ="pas";
     public static final String END_POINT = "http://oss-cn-beijing.aliyuncs.com";
     public static final String SERVER_PHOTO_HEAD = "https://jdr-interview.oss-cn-beijing.aliyuncs.com/";
 }

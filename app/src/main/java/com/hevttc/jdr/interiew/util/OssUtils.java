@@ -24,7 +24,9 @@ public class OssUtils {
     public static OSSClient initOss(Context context){
        if(oss==null){
            // ACCESS_ID,ACCESS_KEY是在阿里云申请的
-           OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider(Constants.ACCESS_ID, Constants.ACCESS_PAS);
+           String id = SPUtils.getString(context,Constants.SP_ACCESS_ID,"");
+           String pass = SPUtils.getString(context,Constants.SP_ACCESS_PAS,"");
+           OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider(id,pass);
            ClientConfiguration conf = new ClientConfiguration();
            conf.setConnectionTimeout(15 * 1000); // 连接超时，默认15秒
            conf.setSocketTimeout(15 * 1000); // socket超时，默认15秒
