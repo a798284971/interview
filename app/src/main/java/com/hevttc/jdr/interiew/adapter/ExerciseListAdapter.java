@@ -1,6 +1,7 @@
 package com.hevttc.jdr.interiew.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.hevttc.jdr.interiew.R;
 import com.hevttc.jdr.interiew.bean.ExerciesListBean;
 import com.hevttc.jdr.interiew.util.DensityUtil;
+import com.hevttc.jdr.interiew.view.activity.ExerciseTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +87,12 @@ public class ExerciseListAdapter extends SecondaryListAdapter<ExerciseListAdapte
 
     @Override
     public void onSubItemClick(SubItemViewHolder holder, int groupItemIndex, int subItemIndex) {
-
+        //Toast.makeText(context, "父类"+groupItemIndex+"条目"+subItemIndex, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, ExerciseTestActivity.class);
+        //Toast.makeText(context, ""+dts.get(groupItemIndex).getSubItems().get(subItemIndex).getId(), Toast.LENGTH_SHORT).show();
+        intent.putExtra("superioe",dts.get(groupItemIndex).getSubItems().get(subItemIndex).getId());
+        intent.putExtra("title",dts.get(groupItemIndex).getSubItems().get(subItemIndex).getTitle());
+        context.startActivity(intent);
     }
 
     public static class GroupItemViewHolder extends RecyclerView.ViewHolder {

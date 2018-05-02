@@ -1,10 +1,12 @@
 package com.hevttc.jdr.interiew.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by hegeyang on 2017/12/21.
  */
 
-public class BaseBean<T> {
+public class BaseBean<T> implements Serializable{
 
 
 

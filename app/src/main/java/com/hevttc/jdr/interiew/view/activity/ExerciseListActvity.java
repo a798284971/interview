@@ -57,6 +57,7 @@ public class ExerciseListActvity extends BaseActivity {
     TextView tvExeliRate;
     @BindView(R.id.rcy_exeli)
     RecyclerView rcyExeli;
+    private ExerciseListAdapter exerciseListAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -120,7 +121,7 @@ public class ExerciseListActvity extends BaseActivity {
         rcyExeli.setLayoutManager(new LinearLayoutManager(mContext));
         rcyExeli.setHasFixedSize(true);
         //rcyExeli.addItemDecoration(new RvDividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
-        ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter(mContext);
+        exerciseListAdapter = new ExerciseListAdapter(mContext);
         ArrayList<SecondaryListAdapter.DataTree
                 <ExerciesListBean, ExerciesListBean.DataListBean>>
                 dataTrees = new ArrayList<>();
@@ -139,5 +140,7 @@ public class ExerciseListActvity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-
+    @Override
+    protected void initListeners() {
+    }
 }

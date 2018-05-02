@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:id="@+id/rl_sigle"
         android:background="@color/divider"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -60,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <RadioGroup
+        android:id="@+id/rg_single"
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingLeft="15dp"
@@ -69,6 +71,7 @@
 
 
         <RadioButton
+            android:id="@+id/rb_a"
             android:drawablePadding="5dp"
             android:text="a"
             android:layout_marginTop="10dp"
@@ -77,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RadioButton
+            android:id="@+id/rb_b"
             android:text="b"
             android:drawablePadding="5dp"
             android:layout_marginTop="10dp"
@@ -85,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RadioButton
+            android:id="@+id/rb_c"
             android:layout_marginTop="10dp"
             android:drawablePadding="5dp"
             android:button="@null"
@@ -93,7 +98,7 @@
             android:layout_height="wrap_content" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/rb_d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

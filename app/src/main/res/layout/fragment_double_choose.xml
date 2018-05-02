@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
         <TextView
             android:text="专项练习"
-            android:id="@+id/tv_single_choose_title"
+            android:id="@+id/tv_double_choose_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <LinearLayout
@@ -23,7 +23,7 @@
 
             <TextView
                 android:textColor="@color/light_green"
-                android:id="@+id/tv_single_choose_now"
+                android:id="@+id/tv_double_choose_now"
                 android:text="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:textColor="@color/light_green"
-                android:id="@+id/tv_single_choose_all"
+                android:id="@+id/tv_double_choose_all"
                 android:text="10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -53,7 +53,7 @@
     </RelativeLayout>
     <TextView
         android:lineSpacingExtra="3dp"
-        android:id="@+id/tv_single_choose_content"
+        android:id="@+id/tv_double_choose_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
@@ -69,6 +69,7 @@
 
 
         <CheckBox
+            android:id="@+id/cb_a"
             android:drawablePadding="5dp"
             android:text="a"
             android:layout_marginTop="10dp"
@@ -77,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <CheckBox
+            android:id="@+id/cb_b"
             android:text="b"
             android:drawablePadding="5dp"
             android:layout_marginTop="10dp"
@@ -85,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <CheckBox
+            android:id="@+id/cb_c"
             android:layout_marginTop="10dp"
             android:drawablePadding="5dp"
             android:button="@null"
@@ -93,7 +96,7 @@
             android:layout_height="wrap_content" />
 
         <CheckBox
-            android:id="@+id/radioButton"
+            android:id="@+id/cb_d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

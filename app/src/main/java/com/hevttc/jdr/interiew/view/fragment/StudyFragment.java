@@ -23,6 +23,7 @@ import com.hevttc.jdr.interiew.bean.SignStatusBean;
 import com.hevttc.jdr.interiew.util.Constants;
 import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
+import com.hevttc.jdr.interiew.view.activity.AboutWrongActivity;
 import com.hevttc.jdr.interiew.view.activity.ExerciseListActvity;
 import com.hevttc.jdr.interiew.view.customview.Gradient;
 import com.lzy.okgo.OkGo;
@@ -223,6 +224,9 @@ public class StudyFragment extends BaseFragment implements View.OnClickListener 
                 toActivity(ExerciseListActvity.class);
                 break;
             case R.id.tv_study_wronglist:
+                Bundle bundle = new Bundle();
+                bundle.putInt("type",1);
+                toActivity(AboutWrongActivity.class,bundle);
                 break;
             case R.id.tv_study_examlist:
                 break;

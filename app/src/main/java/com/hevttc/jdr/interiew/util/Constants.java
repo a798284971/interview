@@ -6,7 +6,7 @@ package com.hevttc.jdr.interiew.util;
 
 public class Constants {
     /*API通用头*/
-    public static final String SERVER_HEAD = "http://10.154.106.7:8082/";
+    public static final String SERVER_HEAD = "http://10.154.104.191:8082/";
 
     /*App相关接口*/
     public static final String API_APP_HEAD = SERVER_HEAD+"app/";
@@ -38,7 +38,10 @@ public class Constants {
     public static final String API_EXECRISE_HEAD = SERVER_HEAD+"exercise/";
     //获取列表
     public static final String API_EXECRISE_LIST = API_EXECRISE_HEAD+"getExerciseListByUid";
-
+    //获取专项练习题目列表
+    public static final String API_EXECRISE_PRACTICE = API_EXECRISE_HEAD+"getExamexercise";
+    //检查答案
+    public static final String API_EXECRISE_CHECK_ANSWER = API_EXECRISE_HEAD+"checkAnswer";
 
     /*用户题目相关*/
     public static final String API_EXEC_USER_HEAD = SERVER_HEAD+"exerciseUser/";
@@ -46,6 +49,8 @@ public class Constants {
     public static final String API_EXEC_USER_WRONGLIST = API_EXEC_USER_HEAD+"getWrongList";
     //获取用户收藏列表
     public static final String API_EXEC_USER_COLLECT = API_EXEC_USER_HEAD+"getCollectList";
+    //提交用户错题
+    public static final String API_EXEC_USER_COMMIT_WRONG = API_EXEC_USER_HEAD+"commitWrong";
 
 
     //*用户常量*/
