@@ -14,7 +14,7 @@
             android:layout_height="?android:attr/actionBarSize">
 
             <Button
-                android:id="@+id/bt_exer_title"
+                android:id="@+id/bt_analy_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -22,7 +22,7 @@
                 android:background="@android:color/transparent"
                 android:drawableLeft="@mipmap/row_back"
                 android:drawablePadding="10dp"
-                android:text="sssss"
+                android:text="试题解析"
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -34,18 +34,24 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/iv_exer_card"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:id="@+id/cb_analy_collect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/collect_status_selector"
                      />
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:id="@+id/iv_analy_share"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@mipmap/ic_test_time" />
-
+                    android:background="@mipmap/icon_share" />
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
+    <com.hevttc.jdr.interiew.view.customview.NoCacheViewPager
+        android:id="@+id/vp_analysis"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

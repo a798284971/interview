@@ -73,11 +73,11 @@ public class StudyFragment extends BaseFragment implements View.OnClickListener 
     TextView tvStudySignNum;
     Unbinder unbinder;
     @BindView(R.id.tv_study_golist)
-    ImageView tvStudyGolist;
+    LinearLayout tvStudyGolist;
     @BindView(R.id.tv_study_wronglist)
-    ImageView tvStudyWronglist;
+    LinearLayout tvStudyWronglist;
     @BindView(R.id.tv_study_examlist)
-    ImageView tvStudyExamlist;
+    LinearLayout tvStudyExamlist;
     @BindView(R.id.tv_study_sign_status)
     TextView tvStudySignStatus;
 

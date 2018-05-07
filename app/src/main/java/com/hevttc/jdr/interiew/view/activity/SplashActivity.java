@@ -10,6 +10,8 @@ import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
 import com.hevttc.jdr.interiew.R;
+import com.hevttc.jdr.interiew.bean.UserInfoBean;
+import com.hevttc.jdr.interiew.util.SPUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,7 +91,12 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
 
         @Override
         public void run() {
-            toActivity(LoginActivity.class);
+            UserInfoBean signInfo = SPUtils.getSignInfo(SplashActivity.this);
+
+            if (signInfo==null)
+                toActivity(LoginActivity.class);
+            else
+                toActivity(MainActivity.class);
             finish();
         }
     }

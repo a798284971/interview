@@ -1220,6 +1220,9 @@ public class NoCacheViewPager extends ViewGroup {private static final String TAG
                 break;
             }
             case MotionEvent.ACTION_MOVE:
+
+
+
                 if (!mIsBeingDragged) {
                     final int pointerIndex = MotionEventCompat.findPointerIndex(ev,
                             mActivePointerId);
@@ -1280,6 +1283,16 @@ public class NoCacheViewPager extends ViewGroup {private static final String TAG
                                 / widthWithMargin;
                         mOnPageChangeListener.onPageScrolled(position,
                                 positionOffset, positionOffsetPixels);
+                    }
+                }
+                if (startX - ev.getX() > criticalValue && (getCurrentItem() == getAdapter().getCount() - 1)) {
+                    if (null != mOnSideListener) {
+                        mOnSideListener.onRightSide();
+                    }
+                }
+                if ((ev.getX() - startX) > criticalValue && (getCurrentItem() == 0)) {
+                    if (null != mOnSideListener) {
+                        mOnSideListener.onLeftSide();
                     }
                 }
                 break;
@@ -1847,4 +1860,64 @@ public class NoCacheViewPager extends ViewGroup {private static final String TAG
             dataSetChanged();
         }
     }
+    /**
+     * 开始点击的位置
+     */
+    private int startX;
+    /**
+     * 临界值
+     */
+    private int criticalValue = 200;
+
+    /**
+     * 边界滑动回调
+     */
+    public interface onSideListener {
+        /**
+         * 左边界回调
+         */
+        void onLeftSide();
+
+        /**
+         * 右边界回调
+         */
+        void onRightSide();
+    }
+
+    /**
+     * 回调
+     */
+    private onSideListener mOnSideListener;
+
+    /**
+     * 设置回调
+     *
+     * @param listener
+     */
+    public void setOnSideListener(onSideListener listener) {
+        this.mOnSideListener = listener;
+    }
+
+    /**
+     * 设置临界值
+     *
+     * @param criticalValue
+     */
+    public void setCriticalValue(int criticalValue) {
+        this.criticalValue = criticalValue;
+    }
+
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                startX = (int) event.getX();
+                break;
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
+
 }

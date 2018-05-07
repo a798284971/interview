@@ -32,6 +32,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +60,7 @@ public class ExerciseResultActivity extends BaseActivity {
     TextView tvGoAla;
     private ExeCommitBean data;
     private HashMap<Integer, String> answer;
+    private BaseBean<ArrayList<CheckAnswerBean>> baseBean;
 
     @Override
     protected int getLayoutId() {
@@ -103,7 +105,7 @@ public class ExerciseResultActivity extends BaseActivity {
                     public void onSuccess(Response<String> response) {
                         Type type = new TypeToken<BaseBean<List<CheckAnswerBean>>>() {
                         }.getType();
-                        BaseBean<List<CheckAnswerBean>> baseBean = new Gson().fromJson(response.body(), type);
+                        baseBean = new Gson().fromJson(response.body(), type);
                         if (baseBean.isSuccess()){
                             //Log.e("hgy",baseBean.getData().size()+"");
                             tvResultAll.setText(baseBean.getData().size()+"");
@@ -128,10 +130,14 @@ public class ExerciseResultActivity extends BaseActivity {
 
     @Override
     protected void initListeners() {
-        tvResultRight.setOnClickListener(new View.OnClickListener() {
+        tvGoAla.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("data",baseBean.getData());
+                bundle.putInt("index",0);
+                bundle.putSerializable("your",answer);
+                toActivity(ExerciseAnalysisActivity.class,bundle);
             }
         });
     }

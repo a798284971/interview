@@ -6,7 +6,8 @@ package com.hevttc.jdr.interiew.util;
 
 public class Constants {
     /*API通用头*/
-    public static final String SERVER_HEAD = "http://10.154.104.191:8082/";
+//    public static final String SERVER_HEAD = "http://10.154.104.191:8082/";
+    public static final String SERVER_HEAD = "http://39.105.89.248:8080/interview/";
 
     /*App相关接口*/
     public static final String API_APP_HEAD = SERVER_HEAD+"app/";
@@ -42,6 +43,8 @@ public class Constants {
     public static final String API_EXECRISE_PRACTICE = API_EXECRISE_HEAD+"getExamexercise";
     //检查答案
     public static final String API_EXECRISE_CHECK_ANSWER = API_EXECRISE_HEAD+"checkAnswer";
+    //获取某个/些题目信息
+    public static final String API_EXECRISE_GETSOMEQUESTION = API_EXECRISE_HEAD+"exercisebyId";
 
     /*用户题目相关*/
     public static final String API_EXEC_USER_HEAD = SERVER_HEAD+"exerciseUser/";
@@ -64,5 +67,8 @@ public class Constants {
     public static final String SP_ACCESS_PAS ="pas";
     public static final String END_POINT = "http://oss-cn-beijing.aliyuncs.com";
     public static final String SERVER_PHOTO_HEAD = "https://jdr-interview.oss-cn-beijing.aliyuncs.com/";
+
+    public static final String REME_NAME = "username";
+    public static final String REME_PASS = "password";
 }
 

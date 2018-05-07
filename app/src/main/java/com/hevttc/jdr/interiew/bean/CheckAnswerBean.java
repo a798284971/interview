@@ -1,10 +1,13 @@
 package com.hevttc.jdr.interiew.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by hegeyang on 2018/5/2.
  */
 
-public class CheckAnswerBean {
+public class CheckAnswerBean implements Parcelable {
 
     /**
      * questionId : 2
@@ -18,6 +21,26 @@ public class CheckAnswerBean {
     private String analysis;
     private int trueRate;
     private boolean collect;
+
+    protected CheckAnswerBean(Parcel in) {
+        questionId = in.readInt();
+        answer = in.readString();
+        analysis = in.readString();
+        trueRate = in.readInt();
+        collect = in.readByte() != 0;
+    }
+
+    public static final Creator<CheckAnswerBean> CREATOR = new Creator<CheckAnswerBean>() {
+        @Override
+        public CheckAnswerBean createFromParcel(Parcel in) {
+            return new CheckAnswerBean(in);
+        }
+
+        @Override
+        public CheckAnswerBean[] newArray(int size) {
+            return new CheckAnswerBean[size];
+        }
+    };
 
     public boolean isCollect() {
         return collect;
@@ -57,5 +80,19 @@ public class CheckAnswerBean {
 
     public void setTrueRate(int trueRate) {
         this.trueRate = trueRate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(questionId);
+        dest.writeString(answer);
+        dest.writeString(analysis);
+        dest.writeInt(trueRate);
+        dest.writeByte((byte) (collect ? 1 : 0));
     }
 }

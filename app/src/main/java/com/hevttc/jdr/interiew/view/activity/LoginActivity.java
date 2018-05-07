@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,6 +24,8 @@ import com.hevttc.jdr.interiew.util.TitleBuilder;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Type;
 
@@ -60,6 +63,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     ImageView ivWxSignin;
     @BindView(R.id.iv_qq_signin)
     ImageView ivQqSignin;
+    @BindView(R.id.cb_login_remember)
+    CheckBox cbRemember;
 
     @Override
     protected int getLayoutId() {
@@ -69,6 +74,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initViews() {
         StatusBarUtil.setViewTopPadding(this, R.id.top_bar);
+        etPhoneNumber.setText(SPUtils.getString(mContext,Constants.REME_NAME,""));
+        etCode.setText(SPUtils.getString(mContext,Constants.REME_PASS,""));
+
+        cbRemember.setChecked(TextUtils.isEmpty(etPhoneNumber.getText().toString().trim()));
+
     }
 
     @Override
@@ -108,7 +118,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void isSignIn() {
         final String mPhone = etPhoneNumber.getText().toString().trim();
-        String mPwd = etCode.getText().toString().trim();
+        final String mPwd = etCode.getText().toString().trim();
         if (TextUtils.isEmpty(mPhone) || TextUtils.isEmpty(mPwd)){
             Toast.makeText(mContext, "账号和密码不能为空", Toast.LENGTH_SHORT).show();
             return;
@@ -127,6 +137,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         if(baseBean.isSuccess()){
                             SPUtils.saveString(mContext,Constants.SP_LOGIN,response.body());
                             Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
+                            if (cbRemember.isChecked()) {
+                                SPUtils.saveString(mContext, Constants.REME_NAME, mPhone);
+                                SPUtils.saveString(mContext,Constants.REME_PASS,mPwd);
+                            }
                             toActivity(MainActivity.class);
                             finish();
                         }else{
