@@ -164,10 +164,11 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
                             SingleChooseFragment singleChooseFragment = (SingleChooseFragment) exerFragmentList.get(position);
 
                             //chooseItems.replace(position,(singleChooseFragment.getChooseItem()));
-                            chooseItems.replace(position,singleChooseFragment.getChooseItem());
+                            chooseItems.put(position,singleChooseFragment.getChooseItem());
+
                         }else{
                             MoreChooseFragment moreChooseFragment = (MoreChooseFragment) exerFragmentList.get(position);
-                            chooseItems.replace(position,moreChooseFragment.getChooseItem());
+                            chooseItems.put(position,moreChooseFragment.getChooseItem());
                             //Log.e("hgy",position+"----"+moreChooseFragment.getChooseItem());
                         }
                     }
@@ -228,6 +229,7 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.iv_exer_card:
                 vpExerMain.setCurrentItem(exerFragmentList.size()-1,false);
+                exerFragmentList.get(exerFragmentList.size()-1).initDatas();
                 break;
 
         }

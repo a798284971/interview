@@ -29,6 +29,7 @@
         <activity android:name=".view.activity.AboutWrongActivity"/>
         <activity android:name=".view.activity.CollectActivity"/>
         <activity android:name=".view.activity.ExerciseResultActivity"/>
+        <activity android:name=".view.activity.ExerciseAnalysisActivity"/>
     </application>
 
 </manifest>
