@@ -118,7 +118,19 @@ public class ExerciseResultActivity extends BaseActivity {
 
     private void parseData(List<CheckAnswerBean> data) {
         rcyResult.setLayoutManager(new GridLayoutManager(mContext,5));
-        rcyResult.setAdapter(new ResultAdapter(R.layout.item_exer_card,data));
+        ResultAdapter resultAdapter = new ResultAdapter(R.layout.item_exer_card, data);
+        rcyResult.setAdapter(resultAdapter);
+        resultAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("data",baseBean.getData());
+                bundle.putInt("index",position);
+                bundle.putSerializable("your",answer);
+                toActivity(ExerciseAnalysisActivity.class,bundle);
+            }
+        });
+
     }
 
     @Override
@@ -158,19 +170,20 @@ public class ExerciseResultActivity extends BaseActivity {
             }else{
                 drawable = TextDrawable.builder().buildRound(helper.getPosition()+1 + "", getResources().getColor(R.color.actionsheet_red));
                 if (!TextUtils.isEmpty(answer.get(helper.getPosition()))){
-                    commitWrong(item);
+                    commitWrong(item,answer.get(helper.getPosition()));
                 }
             }
             iv_card_item.setBackground(drawable);
         }
     }
 
-    private void commitWrong(CheckAnswerBean item) {
+    private void commitWrong(CheckAnswerBean item,String wrongAnswer) {
         UserInfoBean signInfo = SPUtils.getSignInfo(mContext);
         OkGo.<String>get(Constants.API_EXEC_USER_COMMIT_WRONG)
                 .params("uid",signInfo.getId()+"")
                 .params("questionId",item.getQuestionId())
                 .params("type",0)
+                .params("wrongAnswer",wrongAnswer)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

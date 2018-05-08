@@ -7,6 +7,7 @@ import android.os.StrictMode;
 
 
 import com.lzy.okgo.OkGo;
+import com.mob.MobApplication;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +17,7 @@ import okhttp3.OkHttpClient;
  * Created by Admin on 2017/11/5.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends MobApplication {
 
     public static Class<?> next = null;
     public static Bundle nextBundle = null;

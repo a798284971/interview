@@ -15,7 +15,10 @@ public class Constants {
     public static final String API_LUNBO= API_APP_HEAD+"getLunbo";
     //轮询消息
     public static final String API_MESSAGE = API_APP_HEAD+"getMessage";
-
+    //签到消息列表
+    public static final String API_SIGN_LIST = API_APP_HEAD+"getSignTalk";
+    //点赞签到消息
+    public static final String API_SIGN_FIGHT= API_APP_HEAD+"talkFighUp";
 
     /*用户相关接口*/
     public static final String API_USER_HEAD = SERVER_HEAD+"user/";

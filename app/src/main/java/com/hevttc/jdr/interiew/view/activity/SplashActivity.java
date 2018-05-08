@@ -3,15 +3,26 @@ package com.hevttc.jdr.interiew.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hevttc.jdr.interiew.R;
+import com.hevttc.jdr.interiew.bean.BaseBean;
 import com.hevttc.jdr.interiew.bean.UserInfoBean;
+import com.hevttc.jdr.interiew.util.Constants;
 import com.hevttc.jdr.interiew.util.SPUtils;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+
+import java.lang.reflect.Type;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -95,8 +106,36 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
 
             if (signInfo==null)
                 toActivity(LoginActivity.class);
-            else
-                toActivity(MainActivity.class);
+            else {
+                String mPhone = SPUtils.getString(mContext, Constants.REME_NAME, "");
+                String mPwd = SPUtils.getString(mContext, Constants.REME_PASS, "");
+                if (!TextUtils.isEmpty(mPhone) && !TextUtils.isEmpty(mPwd))
+                OkGo.<String>get(Constants.API_LOGININ)
+                        .params("username",mPhone)
+                        .params("password",mPwd)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                Type type = new TypeToken<BaseBean<UserInfoBean>>() {
+                                }.getType();
+                                //Log.e("hgy", response.body().toString() );
+                                BaseBean<UserInfoBean> baseBean = new Gson().fromJson(response.body(), type);
+                                if(baseBean.isSuccess()){
+                                    SPUtils.saveString(SplashActivity.this,Constants.SP_LOGIN,response.body());
+                                    toActivity(MainActivity.class);
+                                }else{
+                                    toActivity(LoginActivity.class);
+                                }
+                            }
+
+                            @Override
+                            public void onError(Response<String> response) {
+                                super.onError(response);
+                                toActivity(LoginActivity.class);
+                            }
+                        });
+
+            }
             finish();
         }
     }

@@ -8,10 +8,11 @@ import java.util.List;
 
 public class WrongListBean {
 
+
     /**
-     * id : 7
-     * title : 软件工程
-     * dataList : [{"id":1,"userId":1,"questionId":1,"createtime":"2017-12-10 15:16:41","type":0,"superioe":7},{"id":2,"userId":1,"questionId":2,"createtime":"2017-12-10 15:22:28","type":0,"superioe":7}]
+     * id : 10
+     * title : 概率统计
+     * dataList : [{"id":4,"userId":5,"questionId":6,"createtime":"2018-05-02 17:42:38","type":0,"superioe":10,"title":"三次射击能射中最少一次的概率为095，请问一次射击能中的概率是多少？","wrongAnswer":"1"}]
      */
 
     private int id;
@@ -44,12 +45,14 @@ public class WrongListBean {
 
     public static class DataListBean {
         /**
-         * id : 1
-         * userId : 1
-         * questionId : 1
-         * createtime : 2017-12-10 15:16:41
+         * id : 4
+         * userId : 5
+         * questionId : 6
+         * createtime : 2018-05-02 17:42:38
          * type : 0
-         * superioe : 7
+         * superioe : 10
+         * title : 三次射击能射中最少一次的概率为095，请问一次射击能中的概率是多少？
+         * wrongAnswer : 1
          */
 
         private int id;
@@ -58,6 +61,8 @@ public class WrongListBean {
         private String createtime;
         private int type;
         private int superioe;
+        private String title;
+        private String wrongAnswer;
 
         public int getId() {
             return id;
@@ -105,6 +110,22 @@ public class WrongListBean {
 
         public void setSuperioe(int superioe) {
             this.superioe = superioe;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getWrongAnswer() {
+            return wrongAnswer;
+        }
+
+        public void setWrongAnswer(String wrongAnswer) {
+            this.wrongAnswer = wrongAnswer;
         }
     }
 }

@@ -15,6 +15,7 @@ import com.hevttc.jdr.interiew.R;
  */
 
 public class TitleBuilder {
+    private Activity context;
     private View titleView;
     private RelativeLayout titleBar;
     private TextView text;
@@ -30,6 +31,14 @@ public class TitleBuilder {
         titleBar = (RelativeLayout)titleView.findViewById(R.id.title_bar);
         leftIco = (ImageView)titleView.findViewById(R.id.title_leftIco);
         rightIco = (ImageView)titleView.findViewById(R.id.title_rightIco);
+    }
+    public TitleBuilder(Activity context,View view){
+        this.context = context;
+        titleView = view.findViewById(R.id.title_bar);
+        text = (TextView)titleView.findViewById(R.id.title_text);
+        titleBar = (RelativeLayout)titleView.findViewById(R.id.title_bar);
+        leftIco = titleView.findViewById(R.id.title_leftIco);
+        rightIco = titleView.findViewById(R.id.title_rightIco);
     }
 
     /**
