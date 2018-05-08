@@ -57,15 +57,19 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <CheckBox
-
-                    android:gravity="center"
-                    android:drawableLeft="@drawable/sign_fight_selector"
-                    android:button="@null"
-                    android:id="@+id/cb_item_fight"
+                <RelativeLayout
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="25dp" />
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/sign_fight_selector"
+                        android:button="@null"
+                        android:id="@+id/cb_item_fight"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                </RelativeLayout>
                 <ImageView
                     android:gravity="center"
                     android:src="@mipmap/ic_sign_back"
