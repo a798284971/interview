@@ -92,6 +92,12 @@ public class HomeFragment extends BaseFragment {
                             });
                         }
                     }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        sfHome.setRefreshing(false);
+                    }
                 });
     }
 

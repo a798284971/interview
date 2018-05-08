@@ -67,7 +67,7 @@
                         android:drawableLeft="@drawable/sign_fight_selector"
                         android:button="@null"
                         android:id="@+id/cb_item_fight"
-                        android:layout_width="25dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="25dp" />
                 </RelativeLayout>
                 <ImageView

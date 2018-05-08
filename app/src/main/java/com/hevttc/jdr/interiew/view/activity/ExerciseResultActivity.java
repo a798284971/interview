@@ -96,6 +96,7 @@ public class ExerciseResultActivity extends BaseActivity {
             builder.append(temp.getId()+",");
         }
         String s = builder.toString();
+        //Log.e("hgy",s);
         UserInfoBean signInfo = SPUtils.getSignInfo(mContext);
         OkGo.<String>get(Constants.API_EXECRISE_CHECK_ANSWER)
                 .params("uid",signInfo.getId()+"")
@@ -105,6 +106,7 @@ public class ExerciseResultActivity extends BaseActivity {
                     public void onSuccess(Response<String> response) {
                         Type type = new TypeToken<BaseBean<List<CheckAnswerBean>>>() {
                         }.getType();
+                        Log.e("hgy",response.body());
                         baseBean = new Gson().fromJson(response.body(), type);
                         if (baseBean.isSuccess()){
                             //Log.e("hgy",baseBean.getData().size()+"");

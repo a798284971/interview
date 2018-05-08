@@ -88,7 +88,9 @@ public class SignListAdapter extends BaseQuickAdapter<SignTalkBean,BaseViewHolde
                             BaseBean<String> baseBean = new Gson().fromJson(response.body(), type);
 
                             cb.setText(baseBean.getData());
+
                         }else{
+
                             cb.setText("");
                         }
 

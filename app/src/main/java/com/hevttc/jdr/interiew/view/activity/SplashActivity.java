@@ -104,9 +104,10 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
         public void run() {
             UserInfoBean signInfo = SPUtils.getSignInfo(SplashActivity.this);
 
-            if (signInfo==null)
+            if (signInfo==null) {
                 toActivity(LoginActivity.class);
-            else {
+                finish();
+            }else {
                 String mPhone = SPUtils.getString(mContext, Constants.REME_NAME, "");
                 String mPwd = SPUtils.getString(mContext, Constants.REME_PASS, "");
                 if (!TextUtils.isEmpty(mPhone) && !TextUtils.isEmpty(mPwd))
@@ -126,17 +127,19 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
                                 }else{
                                     toActivity(LoginActivity.class);
                                 }
+                                finish();
                             }
 
                             @Override
                             public void onError(Response<String> response) {
                                 super.onError(response);
                                 toActivity(LoginActivity.class);
+                                finish();
                             }
                         });
 
             }
-            finish();
+
         }
     }
 }
