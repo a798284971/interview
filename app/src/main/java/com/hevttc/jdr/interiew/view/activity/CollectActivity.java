@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hevttc.jdr.interiew.R;
@@ -82,11 +83,26 @@ public class CollectActivity extends BaseActivity {
                     public void onSuccess(Response<String> response) {
                         Type type = new TypeToken<BaseBean<List<UserCollectBean>>>() {
                         }.getType();
-                        BaseBean<List<UserCollectBean>> baseBean = new Gson().fromJson(response.body(), type);
+                        final BaseBean<List<UserCollectBean>> baseBean = new Gson().fromJson(response.body(), type);
                         if (baseBean.isSuccess()){
                             rcyCollect.setLayoutManager(new LinearLayoutManager(mContext));
                             rcyCollect.addItemDecoration(new RvDividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
-                            rcyCollect.setAdapter(new UserCollectAdapter(R.layout.item_user_collect,baseBean.getData()));
+                            UserCollectAdapter userCollectAdapter = new UserCollectAdapter(R.layout.item_user_collect, baseBean.getData());
+                            rcyCollect.setAdapter(userCollectAdapter);
+                            userCollectAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                    StringBuilder stringBuilder = new StringBuilder("");
+                                    for (UserCollectBean bean : baseBean.getData()) {
+                                        stringBuilder.append(bean.getId()+",");
+                                    }
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("type",ExerciseTestActivity.COLLE_WRONG_TYPE);
+                                    String s = stringBuilder.toString();
+                                    bundle.putString("ids",s.substring(0,s.length()-1));
+                                    toActivity(ExerciseTestActivity.class,bundle);
+                                }
+                            });
                         }
                     }
                 });

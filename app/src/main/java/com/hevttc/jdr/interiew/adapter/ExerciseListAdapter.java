@@ -90,6 +90,7 @@ public class ExerciseListAdapter extends SecondaryListAdapter<ExerciseListAdapte
         //Toast.makeText(context, "父类"+groupItemIndex+"条目"+subItemIndex, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, ExerciseTestActivity.class);
         //Toast.makeText(context, ""+dts.get(groupItemIndex).getSubItems().get(subItemIndex).getId(), Toast.LENGTH_SHORT).show();
+        intent.putExtra("type",ExerciseTestActivity.PRACTICE_TYPE);
         intent.putExtra("superioe",dts.get(groupItemIndex).getSubItems().get(subItemIndex).getId());
         intent.putExtra("title",dts.get(groupItemIndex).getSubItems().get(subItemIndex).getTitle());
         context.startActivity(intent);

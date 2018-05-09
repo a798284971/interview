@@ -48,6 +48,8 @@ public class Constants {
     public static final String API_EXECRISE_CHECK_ANSWER = API_EXECRISE_HEAD+"checkAnswer";
     //获取某个/些题目信息
     public static final String API_EXECRISE_GETSOMEQUESTION = API_EXECRISE_HEAD+"exercisebyId";
+    //获取考试题目列表
+    public static final String API_EXECRISE_GETEXEAM_QUESTION = API_EXECRISE_HEAD+"getExamQuestion";
 
     /*用户题目相关*/
     public static final String API_EXEC_USER_HEAD = SERVER_HEAD+"exerciseUser/";

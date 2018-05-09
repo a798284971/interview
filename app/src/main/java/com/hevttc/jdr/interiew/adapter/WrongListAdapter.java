@@ -1,7 +1,9 @@
 package com.hevttc.jdr.interiew.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +13,10 @@ import android.widget.TextView;
 
 import com.hevttc.jdr.interiew.R;
 import com.hevttc.jdr.interiew.bean.ExerciesListBean;
+import com.hevttc.jdr.interiew.bean.UserCollectBean;
 import com.hevttc.jdr.interiew.bean.WrongListBean;
 import com.hevttc.jdr.interiew.util.DensityUtil;
+import com.hevttc.jdr.interiew.view.activity.ExerciseTestActivity;
 
 import java.util.List;
 
@@ -90,7 +94,17 @@ public class WrongListAdapter extends SecondaryListAdapter<WrongListAdapter.Grou
 
     @Override
     public void onSubItemClick(WrongListAdapter.SubItemViewHolder holder, int groupItemIndex, int subItemIndex) {
-
+        StringBuilder stringBuilder = new StringBuilder("");
+        for (int i=0;i<dts.size();i++) {
+            stringBuilder.append(dts.get(i).getGroupItem().getId()+",");
+        }
+        Intent intent = new Intent(context, ExerciseTestActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("type",ExerciseTestActivity.COLLE_WRONG_TYPE);
+        String s = stringBuilder.toString();
+        bundle.putString("ids",s.substring(0,s.length()-1));
+        intent.putExtras(bundle);
+        context.startActivity(intent);
     }
     public static class GroupItemViewHolder extends RecyclerView.ViewHolder {
         TextView tvGroup;

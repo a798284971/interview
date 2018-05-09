@@ -1,16 +1,12 @@
 package com.hevttc.jdr.interiew.view.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
@@ -23,7 +19,6 @@ import com.hevttc.jdr.interiew.bean.UserInfoBean;
 import com.hevttc.jdr.interiew.util.Constants;
 import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
-import com.hevttc.jdr.interiew.util.TimeUtils;
 import com.hevttc.jdr.interiew.util.TitleBuilder;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -31,7 +26,6 @@ import com.lzy.okgo.model.Response;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -130,7 +124,6 @@ public class HomeFragment extends BaseFragment {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-
         // title标题，微信、QQ和QQ空间等平台使用
         oks.setTitle("测试");
         // titleUrl QQ和QQ空间跳转链接

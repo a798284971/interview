@@ -66,6 +66,9 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
     private HashMap<Integer, String> chooseItems;
     private Handler handler = new Handler();
     private int recLen = 0;
+    public static final int PRACTICE_TYPE = 0x000001;
+    public static final int EXAM_TYPE = 0x00002;
+    public static final int COLLE_WRONG_TYPE = 0x000003;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_exercise_test;
@@ -79,11 +82,22 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initDatas() {
-        superioe = getIntent().getIntExtra("superioe",0);
-        String title = getIntent().getStringExtra("title");
-        btExerTitle.setText(title+"专项练习");
+        int type = getIntent().getIntExtra("type", 0);
+        if (type==PRACTICE_TYPE) {
+            superioe = getIntent().getIntExtra("superioe", 0);
+            String title = getIntent().getStringExtra("title");
+            btExerTitle.setText(title + "专项练习");
+            getExerData();
+        }else if(type==EXAM_TYPE){
+            btExerTitle.setText("在线测试");
+            getExamData();
+        }else{
+            btExerTitle.setText("专项练习");
+            String ids = getIntent().getStringExtra("ids");
+            getSomeQuestionData(ids);
+        }
         chooseItems = new HashMap<Integer,String>();
-        getExerData();
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -94,7 +108,59 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
             }
         },1000);
     }
+    //错题或者收藏
+    private void getSomeQuestionData(String ids) {
+        OkGo.<String>get(Constants.API_EXECRISE_GETSOMEQUESTION)
+                .params("id",ids)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Type type = new TypeToken<BaseBean<List<ExerciseQuestionBean>>>() {
+                        }.getType();
+                        //Log.e("hgy", response.body().toString() );
+                        baseBean = new Gson().fromJson(response.body(), type);
+                        if (baseBean.isSuccess()){
 
+                            initViewPager(baseBean.getData());
+                        }else
+                            Toast.makeText(mContext, "失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Toast.makeText(mContext, "失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    //组卷考试
+    private void getExamData() {
+        UserInfoBean info = SPUtils.getSignInfo(mContext);
+        OkGo.<String>get(Constants.API_EXECRISE_GETEXEAM_QUESTION)
+                .params("uid",info.getId()+"")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Type type = new TypeToken<BaseBean<List<ExerciseQuestionBean>>>() {
+                        }.getType();
+                        //Log.e("hgy", response.body().toString() );
+                        baseBean = new Gson().fromJson(response.body(), type);
+                        if (baseBean.isSuccess()){
+
+                            initViewPager(baseBean.getData());
+                        }else
+                            Toast.makeText(mContext, "失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Toast.makeText(mContext, "失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+        //专项练习
     private void getExerData() {
         //Toast.makeText(mContext, "superioe--"+superioe, Toast.LENGTH_SHORT).show();
         UserInfoBean info = SPUtils.getSignInfo(mContext);
@@ -172,7 +238,6 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
                             //Log.e("hgy",position+"----"+moreChooseFragment.getChooseItem());
                         }
                     }
-
             }
 
             @Override
@@ -184,10 +249,14 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
                     tvExerLast.setText("上一题");
                 }else if(position==exerFragmentList.size()-2){
                     tvExerNext.setText("查看答题卡");
+                    tvExerLast.setEnabled(true);
+                    tvExerNext.setEnabled(true);
                     tvExerLast.setText("上一题");
                 }else if(position==exerFragmentList.size()-1){
                     tvExerNext.setText("提交");
                     tvExerLast.setText("上一步");
+                    tvExerLast.setEnabled(true);
+                    tvExerNext.setEnabled(true);
                     exerFragmentList.get(position).initDatas();
                 }
                 else{
