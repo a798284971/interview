@@ -151,6 +151,7 @@ public class ExerciseResultActivity extends BaseActivity {
                 bundle.putParcelableArrayList("data",baseBean.getData());
                 bundle.putInt("index",0);
                 bundle.putSerializable("your",answer);
+                bundle.putInt("type",ExerciseAnalysisActivity.CHECK_TYPE);
                 toActivity(ExerciseAnalysisActivity.class,bundle);
             }
         });

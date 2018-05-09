@@ -99,7 +99,7 @@
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/ic_right_row"
             android:id="@+id/tv_change_birth"
-            android:layout_width="80dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content" />
     </RelativeLayout>
     <RelativeLayout
@@ -125,7 +125,7 @@
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/ic_right_row"
             android:id="@+id/tv_change_education"
-            android:layout_width="80dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content" />
     </RelativeLayout>
 </LinearLayout>

@@ -40,6 +40,7 @@
         <activity android:name=".view.activity.CollectActivity"/>
         <activity android:name=".view.activity.ExerciseResultActivity"/>
         <activity android:name=".view.activity.ExerciseAnalysisActivity"/>
+        <activity android:name=".view.activity.SettingActivity"/>
         <!-- ShareSDK的activity -->
         <activity
             android:name="com.mob.tools.MobUIShell"

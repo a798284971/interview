@@ -23,6 +23,7 @@ import com.hevttc.jdr.interiew.util.StatusBarUtil;
 import com.hevttc.jdr.interiew.view.activity.AboutWrongActivity;
 import com.hevttc.jdr.interiew.view.activity.ChangeInfoActivity;
 import com.hevttc.jdr.interiew.view.activity.CollectActivity;
+import com.hevttc.jdr.interiew.view.activity.SettingActivity;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -127,6 +128,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         rlBrowseWrong.setOnClickListener(this);
         rlPracticeWrong.setOnClickListener(this);
         rlCollect.setOnClickListener(this);
+        rlSetting.setOnClickListener(this);
+        ivDate.setOnClickListener(this);
 
         appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
 
@@ -137,7 +140,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     if (iswhite) {//变黑
                         isblack = true;
                         iswhite = false;
-
                     }
                     buttonBarLayout.setVisibility(View.VISIBLE);
                     collapsingToolbar.setContentScrimResource(R.color.white);
@@ -198,6 +200,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_collect:
                 toActivity(CollectActivity.class);
+                break;
+            case R.id.rl_setting:
+            case R.id.iv_date:
+                toActivity(SettingActivity.class);
                 break;
         }
     }

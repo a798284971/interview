@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,16 +14,27 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hevttc.jdr.interiew.R;
+import com.hevttc.jdr.interiew.bean.BaseBean;
 import com.hevttc.jdr.interiew.bean.CheckAnswerBean;
+import com.hevttc.jdr.interiew.bean.UserInfoBean;
+import com.hevttc.jdr.interiew.util.Constants;
+import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
 import com.hevttc.jdr.interiew.view.customview.NoCacheViewPager;
 import com.hevttc.jdr.interiew.view.fragment.BaseFragment;
 import com.hevttc.jdr.interiew.view.fragment.choose_fragment.AnalysisFragment;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,7 +61,8 @@ public class ExerciseAnalysisActivity extends BaseActivity implements View.OnCli
     private int goIndex;
     private HashMap<Integer, String> your;
     private AlertDialog alertDialog;
-
+    public static final int CHECK_TYPE = 0x000a1;
+    public static final int WRONG_TYPE = 0x000a2;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_exercise_analysis;
@@ -58,16 +71,44 @@ public class ExerciseAnalysisActivity extends BaseActivity implements View.OnCli
     @Override
     protected void initViews() {
         StatusBarUtil.setViewTopPadding(this, R.id.rl_title);
-        Bundle extras = getIntent().getExtras();
-        data = extras.getParcelableArrayList("data");
-        goIndex = extras.getInt("index");
-        your = (HashMap<Integer, String>) extras.getSerializable("your");
     }
 
 
     @Override
     protected void initDatas() {
-        initViewPager();
+        Bundle extras = getIntent().getExtras();
+        int type = extras.getInt("type");
+        if(type==CHECK_TYPE) {
+            data = extras.getParcelableArrayList("data");
+            goIndex = extras.getInt("index");
+            your = (HashMap<Integer, String>) extras.getSerializable("your");
+            initViewPager();
+        }else{
+            goIndex = extras.getInt("index");
+            String ids = extras.getString("ids");
+            your = (HashMap<Integer, String>) extras.getSerializable("your");
+            getCheckData(ids);
+        }
+    }
+
+    private void getCheckData(String ids) {
+        UserInfoBean signInfo = SPUtils.getSignInfo(mContext);
+        OkGo.<String>get(Constants.API_EXECRISE_CHECK_ANSWER)
+                .params("uid",signInfo.getId()+"")
+                .params("id",ids)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Type type = new TypeToken<BaseBean<List<CheckAnswerBean>>>() {
+                        }.getType();
+
+                        BaseBean<List<CheckAnswerBean>> baseBean = new Gson().fromJson(response.body(), type);
+                        if (baseBean.isSuccess()){
+                            data =(ArrayList<CheckAnswerBean>)baseBean.getData();
+                            initViewPager();
+                        }
+                    }
+                });
     }
 
     private void initViewPager() {

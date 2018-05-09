@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,10 @@ import com.hevttc.jdr.interiew.bean.ExerciesListBean;
 import com.hevttc.jdr.interiew.bean.UserCollectBean;
 import com.hevttc.jdr.interiew.bean.WrongListBean;
 import com.hevttc.jdr.interiew.util.DensityUtil;
+import com.hevttc.jdr.interiew.view.activity.ExerciseAnalysisActivity;
 import com.hevttc.jdr.interiew.view.activity.ExerciseTestActivity;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -95,16 +98,33 @@ public class WrongListAdapter extends SecondaryListAdapter<WrongListAdapter.Grou
     @Override
     public void onSubItemClick(WrongListAdapter.SubItemViewHolder holder, int groupItemIndex, int subItemIndex) {
         StringBuilder stringBuilder = new StringBuilder("");
-        for (int i=0;i<dts.size();i++) {
-            stringBuilder.append(dts.get(i).getGroupItem().getId()+",");
+        List<WrongListBean.DataListBean> dataList = dts.get(groupItemIndex).getGroupItem().getDataList();
+        for (int i=0;i<dataList.size();i++) {
+            stringBuilder.append(dataList.get(i).getQuestionId()+",");
         }
-        Intent intent = new Intent(context, ExerciseTestActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt("type",ExerciseTestActivity.COLLE_WRONG_TYPE);
         String s = stringBuilder.toString();
-        bundle.putString("ids",s.substring(0,s.length()-1));
-        intent.putExtras(bundle);
-        context.startActivity(intent);
+        if (type==1) {
+            Intent intent = new Intent(context, ExerciseTestActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("type", ExerciseTestActivity.COLLE_WRONG_TYPE);
+            bundle.putString("ids", s.substring(0, s.length() - 1));
+            intent.putExtras(bundle);
+            context.startActivity(intent);
+        }else{
+            Intent intent = new Intent(context,ExerciseAnalysisActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("type", ExerciseAnalysisActivity.WRONG_TYPE);
+            bundle.putInt("index",0);
+            bundle.putString("ids",s.substring(0, s.length() - 1));
+            Log.e("hgy",bundle.getInt("type")+"");
+            HashMap<Integer, String> map = new HashMap<>();
+            for (int i=0;i<dataList.size();i++) {
+                map.put(i,dataList.get(i).getWrongAnswer());
+            }
+            bundle.putSerializable("your",map);
+            intent.putExtras(bundle);
+            context.startActivity(intent);
+        }
     }
     public static class GroupItemViewHolder extends RecyclerView.ViewHolder {
         TextView tvGroup;
