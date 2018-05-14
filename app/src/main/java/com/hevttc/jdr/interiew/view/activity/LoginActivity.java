@@ -77,7 +77,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         etPhoneNumber.setText(SPUtils.getString(mContext,Constants.REME_NAME,""));
         etCode.setText(SPUtils.getString(mContext,Constants.REME_PASS,""));
 
-        cbRemember.setChecked(TextUtils.isEmpty(etPhoneNumber.getText().toString().trim()));
+        cbRemember.setChecked(!TextUtils.isEmpty(etPhoneNumber.getText().toString().trim()));
 
     }
 
@@ -140,6 +140,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             if (cbRemember.isChecked()) {
                                 SPUtils.saveString(mContext, Constants.REME_NAME, mPhone);
                                 SPUtils.saveString(mContext,Constants.REME_PASS,mPwd);
+                            }else{
+                                SPUtils.saveString(mContext, Constants.REME_NAME, "");
+                                SPUtils.saveString(mContext,Constants.REME_PASS,"");
                             }
                             toActivity(MainActivity.class);
                             finish();

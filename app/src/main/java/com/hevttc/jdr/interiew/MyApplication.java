@@ -52,5 +52,4 @@ public class MyApplication extends MobApplication {
         OkGo.getInstance().setOkHttpClient(builder.build());
     }
 
-
 }
