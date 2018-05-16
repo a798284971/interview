@@ -18,9 +18,9 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_welcome_1"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_welcome_1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.activity.BaseActivity"/>
@@ -41,6 +41,7 @@
         <activity android:name=".view.activity.ExerciseResultActivity"/>
         <activity android:name=".view.activity.ExerciseAnalysisActivity"/>
         <activity android:name=".view.activity.SettingActivity"/>
+        <activity android:name=".view.activity.GuideActivity"/>
         <!-- ShareSDK的activity -->
         <activity
             android:name="com.mob.tools.MobUIShell"

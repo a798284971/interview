@@ -115,7 +115,7 @@ public class Gradient extends RelativeLayout {
 
         ret = new AnimationSet(false);
         // 创建一个淡出的动画
-        anim = new AlphaAnimation(1f, 0.2f);
+        anim = new AlphaAnimation(1f, 0.1f);
         anim.setDuration(time);
         anim.setInterpolator(new DecelerateInterpolator());
         ret.addAnimation(anim);
@@ -132,7 +132,7 @@ public class Gradient extends RelativeLayout {
         Animation anim;
         ret = new AnimationSet(false);
         // 创建一个淡入的动画
-        anim = new AlphaAnimation(0.2f, 1f);
+        anim = new AlphaAnimation(0.1f, 1f);
         anim.setDuration(time);
         anim.setInterpolator(new LinearInterpolator());
         ret.addAnimation(anim);

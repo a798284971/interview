@@ -68,7 +68,9 @@ public class MainActivity extends BaseActivity {
             drawables[1].setBounds(r);
             //给每一个RadioButton设置图片大小
             rb[i].setCompoundDrawables(null, drawables[1], null, null);
+
         }
+
     }
 
     @Override

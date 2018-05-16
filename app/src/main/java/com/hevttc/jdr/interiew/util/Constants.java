@@ -75,5 +75,6 @@ public class Constants {
 
     public static final String REME_NAME = "username";
     public static final String REME_PASS = "password";
+    public static final String REME_FIRST = "first_login";
 }
 

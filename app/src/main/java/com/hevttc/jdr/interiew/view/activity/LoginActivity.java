@@ -77,8 +77,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         etPhoneNumber.setText(SPUtils.getString(mContext,Constants.REME_NAME,""));
         etCode.setText(SPUtils.getString(mContext,Constants.REME_PASS,""));
 
-        cbRemember.setChecked(!TextUtils.isEmpty(etPhoneNumber.getText().toString().trim()));
-
+        cbRemember.setChecked(true);
     }
 
     @Override

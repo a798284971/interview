@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -102,10 +103,11 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
 
         @Override
         public void run() {
-            UserInfoBean signInfo = SPUtils.getSignInfo(SplashActivity.this);
 
-            if (signInfo==null) {
-                toActivity(LoginActivity.class);
+            UserInfoBean signInfo = SPUtils.getSignInfo(SplashActivity.this);
+            boolean aBoolean = SPUtils.getBoolean(SplashActivity.this, Constants.REME_FIRST, false);
+            if (aBoolean) {
+                toActivity(GuideActivity.class);
                 finish();
             }else {
                 String mPhone = SPUtils.getString(mContext, Constants.REME_NAME, "");
@@ -137,6 +139,8 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
                                 finish();
                             }
                         });
+                else
+                    toActivity(LoginActivity.class);
 
             }
 
