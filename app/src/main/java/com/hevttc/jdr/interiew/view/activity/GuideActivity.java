@@ -44,7 +44,7 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
         tv_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SPUtils.getBoolean(GuideActivity.this, Constants.REME_FIRST,true);
+                SPUtils.saveBoolean(GuideActivity.this, Constants.REME_FIRST,true);
                 Intent intent = new Intent(GuideActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();

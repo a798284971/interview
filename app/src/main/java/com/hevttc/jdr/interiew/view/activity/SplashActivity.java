@@ -106,41 +106,43 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
 
             UserInfoBean signInfo = SPUtils.getSignInfo(SplashActivity.this);
             boolean aBoolean = SPUtils.getBoolean(SplashActivity.this, Constants.REME_FIRST, false);
-            if (aBoolean) {
+            if (!aBoolean) {
                 toActivity(GuideActivity.class);
                 finish();
             }else {
                 String mPhone = SPUtils.getString(mContext, Constants.REME_NAME, "");
                 String mPwd = SPUtils.getString(mContext, Constants.REME_PASS, "");
                 if (!TextUtils.isEmpty(mPhone) && !TextUtils.isEmpty(mPwd))
-                OkGo.<String>get(Constants.API_LOGININ)
-                        .params("username",mPhone)
-                        .params("password",mPwd)
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
-                                Type type = new TypeToken<BaseBean<UserInfoBean>>() {
-                                }.getType();
-                                //Log.e("hgy", response.body().toString() );
-                                BaseBean<UserInfoBean> baseBean = new Gson().fromJson(response.body(), type);
-                                if(baseBean.isSuccess()){
-                                    SPUtils.saveString(SplashActivity.this,Constants.SP_LOGIN,response.body());
-                                    toActivity(MainActivity.class);
-                                }else{
-                                    toActivity(LoginActivity.class);
+                    OkGo.<String>get(Constants.API_LOGININ)
+                            .params("username",mPhone)
+                            .params("password",mPwd)
+                            .execute(new StringCallback() {
+                                @Override
+                                public void onSuccess(Response<String> response) {
+                                    Type type = new TypeToken<BaseBean<UserInfoBean>>() {
+                                    }.getType();
+                                    //Log.e("hgy", response.body().toString() );
+                                    BaseBean<UserInfoBean> baseBean = new Gson().fromJson(response.body(), type);
+                                    if(baseBean.isSuccess()){
+                                        SPUtils.saveString(SplashActivity.this,Constants.SP_LOGIN,response.body());
+                                        toActivity(MainActivity.class);
+                                    }else{
+                                        toActivity(LoginActivity.class);
+                                    }
+                                    finish();
                                 }
-                                finish();
-                            }
 
-                            @Override
-                            public void onError(Response<String> response) {
-                                super.onError(response);
-                                toActivity(LoginActivity.class);
-                                finish();
-                            }
-                        });
-                else
+                                @Override
+                                public void onError(Response<String> response) {
+                                    super.onError(response);
+                                    toActivity(LoginActivity.class);
+                                    finish();
+                                }
+                            });
+                else {
                     toActivity(LoginActivity.class);
+                    finish();
+                }
 
             }
 
