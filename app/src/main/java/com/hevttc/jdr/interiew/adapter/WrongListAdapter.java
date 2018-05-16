@@ -66,7 +66,7 @@ public class WrongListAdapter extends SecondaryListAdapter<WrongListAdapter.Grou
 
     @Override
     public void onSubItemBindViewHolder(RecyclerView.ViewHolder holder, int groupItemIndex, int subItemIndex) {
-        WrongListBean.DataListBean subitem = dts.get(groupItemIndex).getGroupItem().getDataList().get(groupItemIndex);
+        WrongListBean.DataListBean subitem = dts.get(groupItemIndex).getGroupItem().getDataList().get(subItemIndex);
         SubItemViewHolder holder1 = (SubItemViewHolder) holder;
         if (type==0)
             holder1.tv_item_type.setText("查看");

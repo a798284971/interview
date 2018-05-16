@@ -3,6 +3,7 @@ package com.hevttc.jdr.interiew.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.animation.AlphaAnimation;
@@ -38,7 +39,13 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
     @BindView(R.id.rl_splash)
     RelativeLayout rlSplash;
 
-    private Handler handler = new Handler();
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            runOnUiThread(new MyTask());
+        }
+    };
     private Animation animation;
 
     @Override
@@ -74,7 +81,6 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
 
@@ -92,7 +98,7 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
     @Override
     public void onAnimationEnd(Animation animation) {
         //延时2s进入向导界面GuideActivity  该方法在主线程   发送一个延时的消息
-        handler.postDelayed(new MyTask(), 1500);
+        handler.sendEmptyMessageDelayed(1,1500);
     }
 
     @Override
@@ -141,7 +147,6 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
                             });
                 else {
                     toActivity(LoginActivity.class);
-                    finish();
                 }
 
             }
