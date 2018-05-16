@@ -149,6 +149,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             Toast.makeText(mContext, baseBean.getMsg(), Toast.LENGTH_SHORT).show();
                         }
                     }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Toast.makeText(mContext,"网络请求异常,请重试!!",Toast.LENGTH_LONG).show();
+                    }
                 });
     }
 }

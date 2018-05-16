@@ -62,7 +62,7 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     protected void toActivity(Class<?> target, Bundle bundle) {
-        final Intent intent = new Intent(mContext, target);
+        Intent intent = new Intent(mContext, target);
         if (bundle != null) {
             intent.putExtras(bundle);
         }
