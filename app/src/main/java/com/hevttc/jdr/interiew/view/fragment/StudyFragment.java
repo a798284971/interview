@@ -24,6 +24,7 @@ import com.hevttc.jdr.interiew.util.Constants;
 import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
 import com.hevttc.jdr.interiew.view.activity.AboutWrongActivity;
+import com.hevttc.jdr.interiew.view.activity.AppMessageActivity;
 import com.hevttc.jdr.interiew.view.activity.ExerciseListActvity;
 import com.hevttc.jdr.interiew.view.activity.ExerciseTestActivity;
 import com.hevttc.jdr.interiew.view.customview.Gradient;
@@ -81,6 +82,7 @@ public class StudyFragment extends BaseFragment implements View.OnClickListener 
     LinearLayout tvStudyExamlist;
     @BindView(R.id.tv_study_sign_status)
     TextView tvStudySignStatus;
+    private List<MessageBean> textData;
 
     @Override
     public int getLayoutId() {
@@ -146,13 +148,14 @@ public class StudyFragment extends BaseFragment implements View.OnClickListener 
                         }.getType();
                         BaseBean<List<MessageBean>> baseBean = new Gson().fromJson(response.body(), type);
                         if (baseBean.isSuccess()) {
+                            textData = baseBean.getData();
+                            List<String> textList = new ArrayList();
+                            for (MessageBean bean : textData) {
+                                textList.add(bean.getTitle());
+                            }
+                            marqueeView.startWithList(textList);
+                        }
 
-                        }
-                        List<String> textList = new ArrayList();
-                        for (MessageBean bean : baseBean.getData()) {
-                            textList.add(bean.getTitle());
-                        }
-                        marqueeView.startWithList(textList);
                     }
                 });
     }
@@ -202,6 +205,7 @@ public class StudyFragment extends BaseFragment implements View.OnClickListener 
         tvStudyExamlist.setOnClickListener(this);
         tvStudyWronglist.setOnClickListener(this);
         llStudySignUp.setOnClickListener(this);
+        tvHomeClicktoseeDetail.setOnClickListener(this);
     }
 
     @Override
@@ -236,6 +240,11 @@ public class StudyFragment extends BaseFragment implements View.OnClickListener 
                 break;
             case R.id.ll_study_signUp:
                 goSign();
+                break;
+            case R.id.tv_home_clicktosee_detail:
+                Bundle bundle2 = new Bundle();
+                bundle2.putParcelableArrayList("data",(ArrayList<MessageBean>)textData);
+                toActivity(AppMessageActivity.class,bundle2);
                 break;
         }
     }

@@ -1,12 +1,15 @@
 package com.hevttc.jdr.interiew.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 /**
  * Created by hegeyang on 2017/12/22.
  */
 
-public class MessageBean implements Serializable{
+public class MessageBean implements Serializable,Parcelable{
 
     /**
      * id : 1
@@ -19,6 +22,25 @@ public class MessageBean implements Serializable{
     private String title;
     private String content;
     private String createTime;
+
+    protected MessageBean(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        content = in.readString();
+        createTime = in.readString();
+    }
+
+    public static final Creator<MessageBean> CREATOR = new Creator<MessageBean>() {
+        @Override
+        public MessageBean createFromParcel(Parcel in) {
+            return new MessageBean(in);
+        }
+
+        @Override
+        public MessageBean[] newArray(int size) {
+            return new MessageBean[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -50,5 +72,18 @@ public class MessageBean implements Serializable{
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeString(content);
+        dest.writeString(createTime);
     }
 }
