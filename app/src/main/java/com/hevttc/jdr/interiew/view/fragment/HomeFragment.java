@@ -82,8 +82,10 @@ public class HomeFragment extends BaseFragment {
                                     switch (view.getId()){
                                         case R.id.cb_item_share:
                                             showShare();
+                                            break;
                                         case R.id.cb_item_talk:
                                             showTalk(position);
+                                            break;
                                     }
                                 }
                             });

@@ -84,6 +84,8 @@ public class SignListAdapter extends BaseQuickAdapter<SignTalkBean,BaseViewHolde
         return color;
     }
     private void commitFight(final int temp, final BaseViewHolder helper, SignTalkBean item) {
+        final CheckBox cb = helper.getView(R.id.cb_item_fight);
+        cb.setEnabled(false);
         UserInfoBean signInfo = SPUtils.getSignInfo(MyApplication.getMyApplicaiton());
         OkGo.<String>get(Constants.API_SIGN_FIGHT)
                 .params("uid",signInfo.getId()+"")
@@ -92,19 +94,7 @@ public class SignListAdapter extends BaseQuickAdapter<SignTalkBean,BaseViewHolde
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        CheckBox cb = helper.getView(R.id.cb_item_fight);
-                        if (temp==0){
-                            Type type = new TypeToken<BaseBean<String>>() {
-                            }.getType();
-                            BaseBean<String> baseBean = new Gson().fromJson(response.body(), type);
-
-                            cb.setText(baseBean.getData());
-
-                        }else{
-
-                            cb.setText("");
-                        }
-
+                        cb.setEnabled(true);
                     }
                 });
     }

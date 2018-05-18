@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -29,6 +30,9 @@ import com.hevttc.jdr.interiew.view.fragment.choose_fragment.AnalysisFragment;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -137,6 +141,13 @@ public class ExerciseAnalysisActivity extends BaseActivity implements View.OnCli
         super.initListeners();
         btAnalyTitle.setOnClickListener(this);
         ivAnalyShare.setOnClickListener(this);
+       cbAnalyCollect.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               cbAnalyCollect.setEnabled(false);
+               sendCollect(cbAnalyCollect.isChecked());
+           }
+       });
         vpAnalysis.setOnSideListener(new NoCacheViewPager.onSideListener() {
             @Override
             public void onLeftSide() {
@@ -148,6 +159,46 @@ public class ExerciseAnalysisActivity extends BaseActivity implements View.OnCli
                 showOutDialog();
             }
         });
+    }
+
+    private void sendCollect(boolean isChecked) {
+
+        UserInfoBean signInfo = SPUtils.getSignInfo(mContext);
+        if (isChecked){
+            OkGo.<String>get(Constants.API_EXEC_USER_COMMIT_COLL)
+                    .params("uid",signInfo.getId())
+                    .params("questionId",data.get(vpAnalysis.getCurrentItem()).getQuestionId())
+                    .params("type",0)
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            cbAnalyCollect.setEnabled(true);
+                            try {
+                                String msg = new JSONObject(response.body()).getString("msg");
+                                Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+        }else {
+            OkGo.<String>get(Constants.API_EXEC_USER_DELE_COLL)
+                    .params("uid",signInfo.getId())
+                    .params("id",data.get(vpAnalysis.getCurrentItem()).getQuestionId())
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            cbAnalyCollect.setEnabled(true);
+                            String msg = null;
+                            try {
+                                msg = new JSONObject(response.body()).getString("msg");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 
     private void showOutDialog() {

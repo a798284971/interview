@@ -94,7 +94,8 @@ public class ExerciseListActvity extends BaseActivity {
                             TestStatusBean data = baseBean.getData();
                             tvExeliStudyNum.setText(data.getTestDay()+"");
                             tvExeliQuesNum.setText(data.getTestNum()+"");
-                            tvExeliRate.setText(data.getTestRate()+"");
+                            String result = String.format("%.2f", 1.0-data.getTestRate());
+                            tvExeliRate.setText(Double.parseDouble(result)*100+"%");
                         }
                     }
                 });

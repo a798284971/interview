@@ -64,7 +64,10 @@ public class Constants {
     public static final String API_EXEC_USER_COLLECT = API_EXEC_USER_HEAD+"getCollectList";
     //提交用户错题
     public static final String API_EXEC_USER_COMMIT_WRONG = API_EXEC_USER_HEAD+"commitWrong";
-
+    //收藏题目
+    public static final String API_EXEC_USER_COMMIT_COLL = API_EXEC_USER_HEAD+"collectQuestion";
+    //取消收藏
+    public static final String API_EXEC_USER_DELE_COLL = API_EXEC_USER_HEAD+"deleColl";
 
     //*用户常量*/
     public static final String SP_LOGIN = "login";

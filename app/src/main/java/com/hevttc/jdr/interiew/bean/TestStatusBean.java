@@ -14,7 +14,7 @@ public class TestStatusBean {
 
     private int testDay;
     private int testNum;
-    private int testRate;
+    private Double testRate;
 
     public int getTestDay() {
         return testDay;
@@ -32,11 +32,11 @@ public class TestStatusBean {
         this.testNum = testNum;
     }
 
-    public int getTestRate() {
+    public Double getTestRate() {
         return testRate;
     }
 
-    public void setTestRate(int testRate) {
+    public void setTestRate(Double testRate) {
         this.testRate = testRate;
     }
 }
