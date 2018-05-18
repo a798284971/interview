@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/divider">
+    <include layout="@layout/title_builder" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="90dp"
+        android:background="@mipmap/app_icon" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_report"
+            style="?android:attr/textViewStyle"
+            android:background="#FAFAFA"
+            android:layout_width="370dp"
+            android:layout_height="270dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:paddingTop="8dp"
+            android:textSize="16sp"
+            android:paddingLeft="8dp"
+            android:hint="我们永远是您最忠诚的倾听者"
+            android:gravity="start"/>
+        <Button
+            android:id="@+id/bt_report"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/fasong_back"
+            android:layout_below="@+id/et_report"
+            android:textColor="#fff"
+            android:text="立即反馈"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

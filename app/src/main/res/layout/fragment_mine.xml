@@ -312,6 +312,40 @@
                     android:background="@color/divider"
                     android:layout_width="match_parent"
                     android:layout_height="3dp"/>
+                <RelativeLayout
+                    android:id="@+id/rl_my_report"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@mipmap/ic_my_report" />
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="打个小报告" />
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/ic_right_row" />
+
+                </RelativeLayout>
+                <View
+                    android:background="@color/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"/>
 
                 <RelativeLayout
                     android:id="@+id/rl_setting"
@@ -337,6 +371,7 @@
                     </LinearLayout>
 
                 </RelativeLayout>
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>

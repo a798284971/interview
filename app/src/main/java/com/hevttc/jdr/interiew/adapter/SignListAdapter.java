@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -17,12 +18,14 @@ import com.hevttc.jdr.interiew.R;
 import com.hevttc.jdr.interiew.bean.BaseBean;
 import com.hevttc.jdr.interiew.bean.SignTalkBean;
 import com.hevttc.jdr.interiew.bean.UserInfoBean;
+import com.hevttc.jdr.interiew.util.CircleTransform;
 import com.hevttc.jdr.interiew.util.Constants;
 import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.TimeUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.sql.Time;
@@ -49,6 +52,14 @@ public class SignListAdapter extends BaseQuickAdapter<SignTalkBean,BaseViewHolde
                 .setText(R.id.tv_sign_item_time,item.getCreateTime())
                 .setText(R.id.tv_sign_item_content,item.getTalkText())
                 .setChecked(R.id.cb_item_fight,item.getStatus()==1);
+        String s = String.valueOf(item.getHeadImg());
+        Picasso.with(MyApplication.getMyApplicaiton())
+                .load(s)
+                .placeholder(R.mipmap.center_icon)
+                .error(R.mipmap.center_icon)
+                .fit()
+                .transform(new CircleTransform())
+                .into((ImageView) helper.getView(R.id.iv_sign_item_head));
         helper.addOnClickListener(R.id.cb_item_talk)
                 .addOnClickListener(R.id.cb_item_share);
 

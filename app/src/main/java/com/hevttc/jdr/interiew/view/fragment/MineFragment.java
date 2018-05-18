@@ -23,6 +23,7 @@ import com.hevttc.jdr.interiew.util.StatusBarUtil;
 import com.hevttc.jdr.interiew.view.activity.AboutWrongActivity;
 import com.hevttc.jdr.interiew.view.activity.ChangeInfoActivity;
 import com.hevttc.jdr.interiew.view.activity.CollectActivity;
+import com.hevttc.jdr.interiew.view.activity.ReportActivity;
 import com.hevttc.jdr.interiew.view.activity.SettingActivity;
 import com.squareup.picasso.Picasso;
 
@@ -76,6 +77,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     RelativeLayout rlMyPublish;
     @BindView(R.id.rl_setting)
     RelativeLayout rlSetting;
+    @BindView(R.id.rl_my_report)
+    RelativeLayout rlMyReport;
     private int mOffset = 0;
     boolean isblack = false;//状态栏字体是否是黑色
     boolean iswhite = true;//状态栏字体是否是亮色
@@ -130,6 +133,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         rlCollect.setOnClickListener(this);
         rlSetting.setOnClickListener(this);
         ivDate.setOnClickListener(this);
+        rlMyReport.setOnClickListener(this);
 
         appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
 
@@ -200,6 +204,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_collect:
                 toActivity(CollectActivity.class);
+                break;
+            case R.id.rl_my_report:
+                toActivity(ReportActivity.class);
                 break;
             case R.id.rl_setting:
             case R.id.iv_date:

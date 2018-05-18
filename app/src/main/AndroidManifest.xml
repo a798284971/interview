@@ -45,6 +45,7 @@
         <activity android:name=".view.activity.AppMessageActivity"/>
         <activity android:name=".view.activity.CommentActivity"
             android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".view.activity.ReportActivity"/>
         <!-- ShareSDK的activity -->
         <activity
             android:name="com.mob.tools.MobUIShell"
