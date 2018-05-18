@@ -29,6 +29,12 @@ public class ReportActivity extends BaseActivity {
     protected void initViews() {
         ButterKnife.bind(this);
         StatusBarUtil.setViewTopPadding(this, R.id.top_bar);
+
+
+    }
+
+    @Override
+    protected void initDatas() {
         TitleBuilder titleBuilder = new TitleBuilder(this)
                 .setLeftIco(R.mipmap.row_back)
                 .setLeftIcoListening(new View.OnClickListener() {
@@ -46,11 +52,5 @@ public class ReportActivity extends BaseActivity {
             }
         });
         //TODO 保存EditText中的内容,提交到服务器数据库中
-
-    }
-
-    @Override
-    protected void initDatas() {
-
     }
 }
