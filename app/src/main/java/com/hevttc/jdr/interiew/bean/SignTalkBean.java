@@ -1,10 +1,12 @@
 package com.hevttc.jdr.interiew.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by hegeyang on 2018/5/8.
  */
 
-public class SignTalkBean {
+public class SignTalkBean implements Serializable{
 
     /**
      * talkId : 1

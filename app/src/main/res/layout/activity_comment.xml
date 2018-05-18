@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_builder" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sf_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/iv_comment_item_head"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:background="@mipmap/ic_launcher_round" />
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_comment_item_nick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="1231321" />
+
+                    <TextView
+                        android:id="@+id/tv_comment_item_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:gravity="right"
+                        android:text="一分钟前"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:textSize="@dimen/sp_16"
+                        android:id="@+id/tv_comment_item_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/divider"
+                        android:padding="5dp"
+                        android:text="1231321" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/divider"
+                android:paddingTop="8dp" />
+
+            <TextView
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="全部评论:" />
+
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/divider"
+                android:paddingBottom="8dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_comment"
+                android:layout_width="match_parent"
+                android:background="#FAFAFA"
+                android:layout_weight="1"
+                android:layout_height="0dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:padding="8dp"
+                android:orientation="horizontal"
+                android:background="@color/divider">
+
+                <EditText
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/dialog_comment_et"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="65dp"
+                    android:maxHeight="65dp"
+                    android:background="@drawable/comment_dialog_et_selector"
+                    android:gravity="left|top"
+                    android:hint="请输入评论内容..."
+                    android:textColor="#808080"
+                    android:padding="10dp"
+                    android:textColorHint="#929292"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:gravity="center"
+                    android:id="@+id/dialog_comment_bt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/dialog_comment_et"
+                    android:layout_marginTop="8dp"
+                    android:background="@mipmap/fasong_back"
+                    android:text="发布"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
+
+</LinearLayout>

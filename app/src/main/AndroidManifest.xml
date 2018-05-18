@@ -18,9 +18,9 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_welcome_1"
+        android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_welcome_1"
+        android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.activity.BaseActivity"/>
@@ -43,6 +43,8 @@
         <activity android:name=".view.activity.SettingActivity"/>
         <activity android:name=".view.activity.GuideActivity"/>
         <activity android:name=".view.activity.AppMessageActivity"/>
+        <activity android:name=".view.activity.CommentActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <!-- ShareSDK的activity -->
         <activity
             android:name="com.mob.tools.MobUIShell"

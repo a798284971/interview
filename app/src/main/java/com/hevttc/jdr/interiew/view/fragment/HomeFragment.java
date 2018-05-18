@@ -20,6 +20,7 @@ import com.hevttc.jdr.interiew.util.Constants;
 import com.hevttc.jdr.interiew.util.SPUtils;
 import com.hevttc.jdr.interiew.util.StatusBarUtil;
 import com.hevttc.jdr.interiew.util.TitleBuilder;
+import com.hevttc.jdr.interiew.view.activity.CommentActivity;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -81,6 +82,8 @@ public class HomeFragment extends BaseFragment {
                                     switch (view.getId()){
                                         case R.id.cb_item_share:
                                             showShare();
+                                        case R.id.cb_item_talk:
+                                            showTalk(position);
                                     }
                                 }
                             });
@@ -93,6 +96,13 @@ public class HomeFragment extends BaseFragment {
                         sfHome.setRefreshing(false);
                     }
                 });
+    }
+
+    private void showTalk(int position) {
+        //跳转到评论页面
+        Bundle data = new Bundle();
+        data.putSerializable("data",baseBean.getData().get(position));
+        toActivity(CommentActivity.class,data);
     }
 
     @Override

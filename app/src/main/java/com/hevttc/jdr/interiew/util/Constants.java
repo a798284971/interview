@@ -19,6 +19,11 @@ public class Constants {
     public static final String API_SIGN_LIST = API_APP_HEAD+"getSignTalk";
     //点赞签到消息
     public static final String API_SIGN_FIGHT= API_APP_HEAD+"talkFighUp";
+    //评论接口
+    public static final String API_SIGN_COMMENT = API_APP_HEAD+"addTalk";
+    //评论列表接口
+    public static final String API_SIGN_COMMENT_LIST = API_APP_HEAD+"getUserTalkList";
+
 
     /*用户相关接口*/
     public static final String API_USER_HEAD = SERVER_HEAD+"user/";
