@@ -298,7 +298,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:text="我的发表" />
+                            android:text="我的小报告" />
                     </LinearLayout>
                     <ImageView
                         android:layout_centerVertical="true"

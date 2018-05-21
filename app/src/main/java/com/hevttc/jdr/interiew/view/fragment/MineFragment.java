@@ -24,6 +24,7 @@ import com.hevttc.jdr.interiew.view.activity.AboutWrongActivity;
 import com.hevttc.jdr.interiew.view.activity.ChangeInfoActivity;
 import com.hevttc.jdr.interiew.view.activity.CollectActivity;
 import com.hevttc.jdr.interiew.view.activity.ReportActivity;
+import com.hevttc.jdr.interiew.view.activity.ReportListActivity;
 import com.hevttc.jdr.interiew.view.activity.SettingActivity;
 import com.squareup.picasso.Picasso;
 
@@ -168,6 +169,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 toActivity(ChangeInfoActivity.class);
             }
         });
+        rlMyPublish.setOnClickListener(this);
     }
 
     @Override
@@ -211,6 +213,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             case R.id.rl_setting:
             case R.id.iv_date:
                 toActivity(SettingActivity.class);
+                break;
+            case R.id.rl_my_publish:
+                toActivity(ReportListActivity.class);
                 break;
         }
     }

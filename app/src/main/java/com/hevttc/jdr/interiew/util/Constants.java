@@ -23,7 +23,10 @@ public class Constants {
     public static final String API_SIGN_COMMENT = API_APP_HEAD+"addTalk";
     //评论列表接口
     public static final String API_SIGN_COMMENT_LIST = API_APP_HEAD+"getUserTalkList";
-
+    //提交小报告
+    public static final String API_REPORT = API_APP_HEAD+"feedback";
+    //获取用户提交过的小报告
+    public static final String API_GETREPORT = API_APP_HEAD+"getFeedback";
 
     /*用户相关接口*/
     public static final String API_USER_HEAD = SERVER_HEAD+"user/";
