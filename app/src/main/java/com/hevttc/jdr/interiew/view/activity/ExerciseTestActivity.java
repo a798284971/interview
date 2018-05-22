@@ -297,7 +297,7 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
                     showCommitDialog();
                 break;
             case R.id.iv_exer_card:
-                vpExerMain.setCurrentItem(exerFragmentList.size()-1,false);
+                vpExerMain.setCurrentItem(exerFragmentList.size()-1);
                 exerFragmentList.get(exerFragmentList.size()-1).initDatas();
                 break;
 

@@ -15,4 +15,8 @@ public class DateUtil {
 		return hms;
 
 	}
+	public static String getTimesTamp(Date date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		return dateFormat.format(date);
+	}
 }

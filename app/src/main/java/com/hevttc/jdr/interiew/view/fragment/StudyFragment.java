@@ -27,6 +27,7 @@ import com.hevttc.jdr.interiew.view.activity.AboutWrongActivity;
 import com.hevttc.jdr.interiew.view.activity.AppMessageActivity;
 import com.hevttc.jdr.interiew.view.activity.ExerciseListActvity;
 import com.hevttc.jdr.interiew.view.activity.ExerciseTestActivity;
+import com.hevttc.jdr.interiew.view.activity.GoSignActivity;
 import com.hevttc.jdr.interiew.view.customview.Gradient;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -250,6 +251,9 @@ public class StudyFragment extends BaseFragment implements View.OnClickListener 
     }
 
     private void goSign() {
-        Toast.makeText(mActivity, "签到", Toast.LENGTH_SHORT).show();
+        if (tvStudySignStatus.getText().toString().trim().equals("打卡"))
+            toActivity(GoSignActivity.class);
+        else
+            Toast.makeText(mActivity, "今天已经打过卡了", Toast.LENGTH_SHORT).show();
     }
 }

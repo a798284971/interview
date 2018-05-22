@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_builder"/>
+    <TextView
+        android:padding="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:text="坚持每天打卡是在记录自己的进步旅程，一天最多能打一次卡哦"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_go_sign_list"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/light_green"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:text="我的打卡记录 >>"
+            android:textSize="13sp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/divider"/>
+
+    <TextView
+        android:id="@+id/tv_go_sign_date"
+        android:padding="13dp"
+        android:text="2018-5-20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light_green"/>
+    <TextView
+        android:layout_marginLeft="13dp"
+        android:text="我在面试宝典今天完成了:"
+        android:textSize="13sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"/>
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_study_questionNum"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="12sp"
+                android:textColor="@color/dark_black"
+                android:layout_marginTop="10dp"
+                android:text="今日做题/道"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_study_studyNum"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="12sp"
+                android:textColor="@color/dark_black"
+                android:layout_marginTop="10dp"
+                android:text="今日学习/节"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <EditText
+        android:id="@+id/et_go_sign_text"
+        android:padding="5dp"
+        android:textSize="13sp"
+        android:gravity="top|left"
+        android:hint="简单说说自己的感受吧"
+        android:background="@color/divider"
+        android:layout_margin="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+    <TextView
+        android:id="@+id/tv_go_sign_send"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_sure"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="打卡"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_go_sign_relook"
+        android:layout_marginTop="20dp"
+        android:background="#b3aeae"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="再看看"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

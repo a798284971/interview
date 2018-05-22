@@ -96,6 +96,7 @@ public class SingleChooseFragment extends BaseFragment {
     }
     public String getChooseItem(){
         String temp = "";
+        if (rbA!=null)
         switch (rgSingle.getCheckedRadioButtonId()){
             case R.id.rb_a:
                 temp = "1";

@@ -49,6 +49,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.rg_main)
     RadioGroup rgMain;
     private NoScrollViewPager vpMain;
+    private List<Fragment> fragments;
 
     @Override
     protected int getLayoutId() {
@@ -99,7 +100,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initViewPagers() {
-        final List<Fragment> fragments = new ArrayList<>();
+        fragments = new ArrayList<>();
         fragments.add(new StudyFragment());
         fragments.add(new HomeFragment());
         fragments.add(new MineFragment());
@@ -146,5 +147,12 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        StudyFragment studyFragment = (StudyFragment) fragments.get(0);
+        studyFragment.initDatas();
     }
 }

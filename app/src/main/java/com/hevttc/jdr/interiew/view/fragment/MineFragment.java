@@ -26,6 +26,7 @@ import com.hevttc.jdr.interiew.view.activity.CollectActivity;
 import com.hevttc.jdr.interiew.view.activity.ReportActivity;
 import com.hevttc.jdr.interiew.view.activity.ReportListActivity;
 import com.hevttc.jdr.interiew.view.activity.SettingActivity;
+import com.hevttc.jdr.interiew.view.activity.SignListActivity;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -170,6 +171,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             }
         });
         rlMyPublish.setOnClickListener(this);
+        rlMySign.setOnClickListener(this);
     }
 
     @Override
@@ -216,6 +218,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_my_publish:
                 toActivity(ReportListActivity.class);
+                break;
+            case R.id.rl_my_sign:
+                toActivity(SignListActivity.class);
                 break;
         }
     }

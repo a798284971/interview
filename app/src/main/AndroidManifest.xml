@@ -48,6 +48,8 @@
         <activity android:name=".view.activity.ReportActivity"/>
         <activity android:name=".view.activity.ReportListActivity"/>
         <activity android:name=".view.activity.SetPwdActivity"/>
+        <activity android:name=".view.activity.GoSignActivity"/>
+        <activity android:name=".view.activity.SignListActivity"/>
         <!-- ShareSDK的activity -->
         <activity
             android:name="com.mob.tools.MobUIShell"
