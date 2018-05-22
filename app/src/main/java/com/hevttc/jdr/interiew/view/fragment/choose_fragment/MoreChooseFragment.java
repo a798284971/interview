@@ -96,17 +96,19 @@ public class MoreChooseFragment extends BaseFragment {
     public String getChooseItem(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("");
-        if (cbA.isChecked()){
-            stringBuilder.append("1,");
-        }
-        if (cbB.isChecked()){
-            stringBuilder.append("2,");
-        }
-        if (cbC.isChecked()){
-            stringBuilder.append("3,");
-        }
-        if (cbD.isChecked()){
-            stringBuilder.append("4,");
+        if(cbA!=null) {
+            if (cbA.isChecked()) {
+                stringBuilder.append("1,");
+            }
+            if (cbB.isChecked()) {
+                stringBuilder.append("2,");
+            }
+            if (cbC.isChecked()) {
+                stringBuilder.append("3,");
+            }
+            if (cbD.isChecked()) {
+                stringBuilder.append("4,");
+            }
         }
         String s = stringBuilder.toString();
         if (TextUtils.isEmpty(s))

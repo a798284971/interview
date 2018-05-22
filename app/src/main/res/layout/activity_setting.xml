@@ -1,8 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#6dd2d2d2">
     <include layout="@layout/title_builder"/>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:text="修改密码"
+        android:padding="10dp"
+        android:gravity="center"
+        android:id="@+id/tv_setting_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/rl_setting_exe_num"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:background="@color/white"
+            android:text="智能组卷题目数"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="sdfsdf"
+            android:layout_alignParentRight="true"
+            android:id="@+id/tv_exe_setting_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_setting_exe_model"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:background="@color/white"
+            android:text="智能组卷来源"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:paddingRight="10dp"
+            android:layout_centerVertical="true"
+            android:text="ssss"
+            android:layout_alignParentRight="true"
+            android:id="@+id/tv_exe_setting_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:text="关于我们"
+        android:padding="10dp"
+        android:gravity="center"
+
+        android:id="@+id/tv_setting_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <TextView
         android:text="退出"
         android:padding="10dp"
