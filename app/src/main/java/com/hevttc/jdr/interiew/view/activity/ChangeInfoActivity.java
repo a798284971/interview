@@ -63,6 +63,7 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -331,9 +332,11 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
                                     .execute(new StringCallback() {
                                         @Override
                                         public void onSuccess(Response<String> response) {
-                                            Type type = new TypeToken<ArrayList<UnivisityBean>>() {
+                                            //Log.e("hgy",response.body().toString());
+                                            Type type = new TypeToken<BaseBean<List<UnivisityBean>>>() {
                                             }.getType();
-                                            final ArrayList<UnivisityBean> dataList = new Gson().fromJson(response.body(), type);
+                                            final BaseBean<List<UnivisityBean>> baseBean= new Gson().fromJson(response.body(), type);
+                                            final ArrayList<UnivisityBean> dataList = (ArrayList<UnivisityBean>) baseBean.getData();
                                             if (dataList.size()!=0) {
                                                 UnivisityAdapter univisityAdapter = new UnivisityAdapter(R.layout.item_univisity_dialog, dataList);
                                                 rcy_education.setVisibility(View.VISIBLE);
@@ -341,7 +344,7 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
                                                 univisityAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                                     @Override
                                                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                                        et_education.setText(dataList.get(position).getName());
+                                                        et_education.setText(dataList.get(position).getSchoolName());
                                                         rcy_education.setVisibility(View.GONE);
                                                     }
                                                 });

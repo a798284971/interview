@@ -21,6 +21,6 @@ public class UnivisityAdapter extends BaseQuickAdapter<UnivisityBean,BaseViewHol
 
     @Override
     protected void convert(BaseViewHolder helper, UnivisityBean item) {
-        helper.setText(R.id.tv_item_univisity,item.getName());
+        helper.setText(R.id.tv_item_univisity,item.getSchoolName());
     }
 }

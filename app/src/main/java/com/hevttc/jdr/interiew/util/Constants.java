@@ -6,8 +6,8 @@ package com.hevttc.jdr.interiew.util;
 
 public class Constants {
     /*API通用头*/
-//    public static final String SERVER_HEAD = "http://192.168.1.105:8082/";
-    public static final String SERVER_HEAD = "http://39.105.89.248:8080/interview/";
+    public static final String SERVER_HEAD = "http://192.168.1.105:8082/";
+//    public static final String SERVER_HEAD = "http://39.105.89.248:8080/interview/";
 
     /*App相关接口*/
     public static final String API_APP_HEAD = SERVER_HEAD+"app/";
@@ -31,6 +31,8 @@ public class Constants {
     public static final String API_GETUSERSETTING = API_APP_HEAD+"getUserSetting";
     //更改用户设置
     public static final String API_SENDUSERSETTING = API_APP_HEAD+"userSetting";
+    //获取大学名字
+    public static final String API_GET_UNIVISITY = API_APP_HEAD+"getByUniversityName";
 
     /*用户相关接口*/
     public static final String API_USER_HEAD = SERVER_HEAD+"user/";
@@ -83,8 +85,7 @@ public class Constants {
 
     //*用户常量*/
     public static final String SP_LOGIN = "login";
-    //获取大学名字
-    public static final String API_GET_UNIVISITY = "http://119.29.166.254:9090/api/university/getByUniversityName";
+
 
 
     /*常量*/

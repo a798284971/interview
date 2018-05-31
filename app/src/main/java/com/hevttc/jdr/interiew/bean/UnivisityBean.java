@@ -7,76 +7,66 @@ package com.hevttc.jdr.interiew.bean;
 public class UnivisityBean {
 
     /**
-     * id : 1520
-     * name : 河北科技大学
-     * website : http://www.hebust.edu.cn/
-     * provinceId : 3
-     * level : 本科
-     * abbreviation : hebust
-     * city : 石家庄
+     * areaId : 13000000
+     * areaName : 河北省
+     * displayOrder : 0
+     * schoolId : 228
+     * schoolName : 河北理工大学轻工学院
+     * schoolType : 0
      */
 
-    private int id;
-    private String name;
-    private String website;
-    private int provinceId;
-    private String level;
-    private String abbreviation;
-    private String city;
+    private String areaId;
+    private String areaName;
+    private String displayOrder;
+    private int schoolId;
+    private String schoolName;
+    private int schoolType;
 
-    public int getId() {
-        return id;
+    public String getAreaId() {
+        return areaId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
     }
 
-    public String getName() {
-        return name;
+    public String getAreaName() {
+        return areaName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
-    public String getWebsite() {
-        return website;
+    public String getDisplayOrder() {
+        return displayOrder;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
+    public void setDisplayOrder(String displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
-    public int getProvinceId() {
-        return provinceId;
+    public int getSchoolId() {
+        return schoolId;
     }
 
-    public void setProvinceId(int provinceId) {
-        this.provinceId = provinceId;
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
     }
 
-    public String getLevel() {
-        return level;
+    public String getSchoolName() {
+        return schoolName;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 
-    public String getAbbreviation() {
-        return abbreviation;
+    public int getSchoolType() {
+        return schoolType;
     }
 
-    public void setAbbreviation(String abbreviation) {
-        this.abbreviation = abbreviation;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setSchoolType(int schoolType) {
+        this.schoolType = schoolType;
     }
 }
