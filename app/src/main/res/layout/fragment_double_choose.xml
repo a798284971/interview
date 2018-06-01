@@ -1,108 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:background="@color/divider"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:background="@color/divider"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="专项练习"
+                android:id="@+id/tv_double_choose_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/light_green"
+                    android:id="@+id/tv_double_choose_now"
+                    android:text="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/light_green"
+                    android:text="/"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/light_green"
+                    android:id="@+id/tv_double_choose_all"
+                    android:text="10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="(多选题)"
+                android:textColor="@color/light_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
         <TextView
-            android:text="专项练习"
-            android:id="@+id/tv_double_choose_title"
-            android:layout_width="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:id="@+id/tv_double_choose_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:textColor="@color/light_green"
-                android:id="@+id/tv_double_choose_now"
-                android:text="1"
+
+            <CheckBox
+                android:id="@+id/cb_a"
+                android:drawablePadding="5dp"
+                android:text="a"
+                android:layout_marginTop="10dp"
+                android:button="@null"
+                android:drawableLeft="@drawable/choose_a_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <TextView
-                android:textColor="@color/light_green"
-                android:text="/"
+            <CheckBox
+                android:id="@+id/cb_b"
+                android:text="b"
+                android:drawablePadding="5dp"
+                android:layout_marginTop="10dp"
+                android:button="@null"
+                android:drawableLeft="@drawable/choose_b_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <TextView
-                android:textColor="@color/light_green"
-                android:id="@+id/tv_double_choose_all"
-                android:text="10"
+            <CheckBox
+                android:id="@+id/cb_c"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="5dp"
+                android:button="@null"
+                android:drawableLeft="@drawable/choose_c_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/cb_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:button="@null"
+                android:drawableLeft="@drawable/choose_d_selector"
+                android:drawablePadding="5dp" />
         </LinearLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:paddingTop="10dp"
-        android:paddingLeft="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="(多选题)"
-            android:textColor="@color/light_green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
-    <TextView
-        android:lineSpacingExtra="3dp"
-        android:id="@+id/tv_double_choose_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <LinearLayout
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <CheckBox
-            android:id="@+id/cb_a"
-            android:drawablePadding="5dp"
-            android:text="a"
-            android:layout_marginTop="10dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/choose_a_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:id="@+id/cb_b"
-            android:text="b"
-            android:drawablePadding="5dp"
-            android:layout_marginTop="10dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/choose_b_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:id="@+id/cb_c"
-            android:layout_marginTop="10dp"
-            android:drawablePadding="5dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/choose_c_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <CheckBox
-            android:id="@+id/cb_d"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:button="@null"
-            android:drawableLeft="@drawable/choose_d_selector"
-            android:drawablePadding="5dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

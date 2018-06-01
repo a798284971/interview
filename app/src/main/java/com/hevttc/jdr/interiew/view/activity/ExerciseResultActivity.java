@@ -106,7 +106,7 @@ public class ExerciseResultActivity extends BaseActivity {
                     public void onSuccess(Response<String> response) {
                         Type type = new TypeToken<BaseBean<List<CheckAnswerBean>>>() {
                         }.getType();
-                        Log.e("hgy",response.body());
+                        //Log.e("hgy",response.body());
                         baseBean = new Gson().fromJson(response.body(), type);
                         if (baseBean.isSuccess()){
                             //Log.e("hgy",baseBean.getData().size()+"");
@@ -181,6 +181,7 @@ public class ExerciseResultActivity extends BaseActivity {
     }
 
     private void commitWrong(CheckAnswerBean item,String wrongAnswer) {
+        Log.e("hgy","执行了");
         UserInfoBean signInfo = SPUtils.getSignInfo(mContext);
         OkGo.<String>get(Constants.API_EXEC_USER_COMMIT_WRONG)
                 .params("uid",signInfo.getId()+"")
@@ -190,8 +191,9 @@ public class ExerciseResultActivity extends BaseActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-
+                        Log.e("hgy",response.body());
                     }
+
                 });
     }
 }
