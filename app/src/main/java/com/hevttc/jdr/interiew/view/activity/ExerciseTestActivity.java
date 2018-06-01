@@ -190,7 +190,7 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initViewPager(List<ExerciseQuestionBean> data) {
-        vpExerMain.setOffscreenPageLimit(data.size());
+        vpExerMain.setOffscreenPageLimit(data.size()+1);
         int intTemp = 0;
         exerFragmentList = new ArrayList<BaseFragment>();
         for (ExerciseQuestionBean bean : data) {
@@ -201,7 +201,12 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
             chooseItems.put(intTemp++,"");
         }
         exerFragmentList.add(new ExeCardFragment());
-        //vpExerMain.setOffscreenPageLimit(exerFragmentList.size());
+        if (data.size()==1){
+            tvExerNext.setText("查看答题卡");
+            tvExerLast.setEnabled(false);
+            tvExerNext.setEnabled(true);
+            tvExerLast.setText("上一题");
+        }
         vpExerMain.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -292,13 +297,32 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
                 vpExerMain.setCurrentItem(vpExerMain.getCurrentItem()-1);
                 break;
             case R.id.tv_exer_next:
+                if (tvExerNext.getText().toString().equals("查看答题卡")) {
+                    if (baseBean.getData().get(vpExerMain.getCurrentItem()).getType()==0){
+                        SingleChooseFragment singleChooseFragment = (SingleChooseFragment) exerFragmentList.get(vpExerMain.getCurrentItem());
+                        chooseItems.put(vpExerMain.getCurrentItem(),singleChooseFragment.getChooseItem());
+
+                    }else{
+                        MoreChooseFragment moreChooseFragment = (MoreChooseFragment) exerFragmentList.get(vpExerMain.getCurrentItem());
+                        chooseItems.put(vpExerMain.getCurrentItem(),moreChooseFragment.getChooseItem());
+                    }
+                    exerFragmentList.get(exerFragmentList.size() - 1).initDatas();
+                }
                 if (!tvExerNext.getText().toString().equals("提交"))
                     vpExerMain.setCurrentItem(vpExerMain.getCurrentItem()+1);
                 else
                     showCommitDialog();
                 break;
             case R.id.iv_exer_card:
-                vpExerMain.setCurrentItem(exerFragmentList.size()-1);
+                if (baseBean.getData().get(vpExerMain.getCurrentItem()).getType()==0){
+                    SingleChooseFragment singleChooseFragment = (SingleChooseFragment) exerFragmentList.get(vpExerMain.getCurrentItem());
+                    chooseItems.put(vpExerMain.getCurrentItem(),singleChooseFragment.getChooseItem());
+
+                }else{
+                    MoreChooseFragment moreChooseFragment = (MoreChooseFragment) exerFragmentList.get(vpExerMain.getCurrentItem());
+                    chooseItems.put(vpExerMain.getCurrentItem(),moreChooseFragment.getChooseItem());
+                }
+                vpExerMain.setCurrentItem(exerFragmentList.size()-1,false);
                 exerFragmentList.get(exerFragmentList.size()-1).initDatas();
                 break;
 
