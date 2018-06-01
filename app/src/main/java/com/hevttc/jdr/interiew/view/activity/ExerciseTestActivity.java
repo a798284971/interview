@@ -190,6 +190,7 @@ public class ExerciseTestActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initViewPager(List<ExerciseQuestionBean> data) {
+        vpExerMain.setOffscreenPageLimit(data.size());
         int intTemp = 0;
         exerFragmentList = new ArrayList<BaseFragment>();
         for (ExerciseQuestionBean bean : data) {
